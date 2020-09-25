@@ -8,7 +8,7 @@ void main()
     int cont = 0;
     void crearHijo()
     {
-        if(cont <5)
+        if(cont < 5)
         {
             pid_t pid;
             pid=fork();
@@ -26,6 +26,7 @@ void main()
         else{
             exit(0);
         }
+        cont++;
     }
     crearHijo();
     exit(0);

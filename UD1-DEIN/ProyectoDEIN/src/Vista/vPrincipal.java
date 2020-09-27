@@ -11,6 +11,9 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import static BD.clsConstantesDB.SQL_SELECT_ALUMNO;
+import static BD.clsConstantesDB.SQL_SELECT_ALUMNO_BY_NOMBRE;
+import BD.clsgestorLD;
 
 public class vPrincipal extends JFrame {
 
@@ -31,13 +34,13 @@ public class vPrincipal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		Titulo = new JLabel("Alta Deporte");
-		Titulo.setBounds(119, 5, 205, 32);
+		Titulo = new JLabel("Busqueda Deporte");
+		Titulo.setBounds(94, 11, 241, 32);
 		Titulo.setFont(new Font("Dialog", Font.BOLD, 26));
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(Titulo);
 		
-		btnAceptar = new JButton("Añadir");
+		btnAceptar = new JButton("Buscar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
@@ -56,15 +59,18 @@ public class vPrincipal extends JFrame {
 		lblNombre.setBounds(31, 73, 70, 15);
 		contentPane.add(lblNombre);
 		
-		listaDeportes.add("Futbol");
-		listaDeportes.add("Basket");
-		listaDeportes.add("Golf");
-		listaDeportes.add("Hockey");
 
 	}
 	private void buscarCoincidencias(ActionEvent arg0) {
 		String busqueda = txtNombre.getText();
-		listaDeportes.contains(busqueda);
+		if (busqueda != null)
+		{
+			SQL_SELECT_ALUMNO
+		}
+		else
+		{
+			SQL_SELECT_ALUMNO_BY_NOMBRE
+		}
 	
 		
 	}

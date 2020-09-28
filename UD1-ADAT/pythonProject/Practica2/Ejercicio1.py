@@ -19,10 +19,18 @@ def copiarArchivo():
     shutil.copy(archivo, ruta + "/" + archivo)
 
 def moverArchivo():
-    pass
+    archivo = input("introduce el nombre del archivo que quieres copiar")
+    ruta = input("introduce la ruta donde quieres copiar el archivo")
+    shutil.move(archivo, ruta + "/" + archivo)
 
 def eliminarArchivoDirectorio():
-    pass
+    accion = int(input("Introduce '1' si lo que quieres borrar es un archivo y '2' si es una carpeta"))
+    if accion == 1:
+        archivo = input("introduce el nombre del archivo que quieres copiar")
+        os.remove(archivo)
+    if accion == 2:
+        ruta = input("introduce la ruta donde quieres copiar el archivo")
+        os.rmtree(ruta)
 
 def salir():
     exit(0)

@@ -11,8 +11,6 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-import static BD.clsConstantesDB.SQL_SELECT_ALUMNO;
-import static BD.clsConstantesDB.SQL_SELECT_ALUMNO_BY_NOMBRE;
 import BD.clsgestorLD;
 
 public class vPrincipal extends JFrame {
@@ -40,15 +38,12 @@ public class vPrincipal extends JFrame {
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(Titulo);
 		
-		btnAceptar = new JButton("Buscar");
-		btnAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) 
-			{
-				buscarCoincidencias(arg0);
-			}
-		});
+		/*
+		 * btnAceptar = new JButton("Buscar"); btnAceptar.addActionListener(new
+		 * ActionListener() { public void actionPerformed(ActionEvent arg0) {
+		 * buscarCoincidencias(arg0); } });
 		btnAceptar.setBounds(253, 71, 163, 19);
-		contentPane.add(btnAceptar);
+		contentPane.add(btnAceptar);*/
 		
 		txtNombre = new JTextField();
 		txtNombre.setBounds(103, 71, 114, 19);
@@ -60,18 +55,5 @@ public class vPrincipal extends JFrame {
 		contentPane.add(lblNombre);
 		
 
-	}
-	private void buscarCoincidencias(ActionEvent arg0) {
-		String busqueda = txtNombre.getText();
-		if (busqueda != null)
-		{
-			SQL_SELECT_ALUMNO
-		}
-		else
-		{
-			SQL_SELECT_ALUMNO_BY_NOMBRE
-		}
-	
-		
 	}
 }

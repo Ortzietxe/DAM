@@ -6,7 +6,7 @@ public class Main {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) {				
 		vPrincipal vp = new vPrincipal();
 		vp.setVisible(true);
 	}

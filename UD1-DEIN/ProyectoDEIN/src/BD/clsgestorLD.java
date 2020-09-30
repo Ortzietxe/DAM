@@ -16,10 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import static BD.clsConstantesDB.SQL_SELECT_ALUMNO_BY_NOMBRE;
-import static BD.clsConstantesDB.SQL_SELECT_ALUMNO;
-
-
 /**
  * Esta clase es la encargada de acceder a la base de datos y de realizar consultas. Fundamentalmente realiza las operaciones de
  * INSERT, SELECT, UPDATE y DELETE de cualquier tipo de datos.
@@ -29,7 +25,7 @@ public class clsgestorLD
 	
 	
 	/**
-	 * Objeto para crear la conexión a base de datos.
+	 * Objeto para crear la conexion a base de datos.
 	 */
 	Connection conn = null;
 	
@@ -45,7 +41,7 @@ public class clsgestorLD
 	
 	
 	/**
-	 * Constructor sin parámetros de la clase.
+	 * Constructor sin parametros de la clase.
 	 */
 	public clsgestorLD()
 	{
@@ -54,7 +50,7 @@ public class clsgestorLD
 	
 	
 	/**
-	 * Método para la conexión a la base de datos.
+	 * Metodo para la conexion a la base de datos.
 	 * 
 	 */
 	 public void Connect()
@@ -110,7 +106,7 @@ public class clsgestorLD
 			} 
 			catch (SQLException e) 
 			{
-				System.out.println("Error en la recuperación de datos para SQL= " + sql + " " + e);
+				System.out.println("Error en la recuperaciï¿½n de datos para SQL= " + sql + " " + e);
 			}
 			
 			

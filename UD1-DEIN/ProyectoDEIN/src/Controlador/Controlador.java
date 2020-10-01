@@ -2,12 +2,15 @@ package Controlador;
 
 import Vista.vPrincipal;
 
-public class Main {
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {				
+public class Controlador 
+{
+	
+	
+	public void MostrarVentanaPrincipal()
+	{
 		vPrincipal vp = new vPrincipal();
 		vp.setVisible(true);
+		
 	}
+	
 }

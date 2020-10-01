@@ -12,47 +12,97 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import BD.clsgestorLD;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.ImageIcon;
+import javax.swing.UIManager;
+import java.awt.SystemColor;
+import java.awt.Color;
 
 public class vPrincipal extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField txtNombre;
-	private JLabel Titulo;
+	private JPanel logo;
 	private JButton btnAceptar;
-	private JLabel lblNombre;
 	private ArrayList<String> listaDeportes;
 	/**
 	 * Create the frame.
 	 */
 	public vPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setBounds(100, 100, 555, 300);
 		
-		Titulo = new JLabel("Busqueda Deporte");
-		Titulo.setBounds(94, 11, 241, 32);
-		Titulo.setFont(new Font("Dialog", Font.BOLD, 26));
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setFont(new Font("Dialog", Font.BOLD, 17));
+		menuBar.setForeground(new Color(0, 0, 0));
+		menuBar.setBorderPainted(false);
+		menuBar.setBackground(new Color(30, 144, 255));
+		setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("Olimpiadas");
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmConsulta = new JMenuItem("Consulta");
+		mnNewMenu.add(mntmConsulta);
+		
+		JMenuItem mntmAltaOlimpiada = new JMenuItem("Alta olimpiada");
+		mnNewMenu.add(mntmAltaOlimpiada);
+		
+		JMenu mnNewMenu_1 = new JMenu("Eventos");
+		menuBar.add(mnNewMenu_1);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Consulta");
+		mnNewMenu_1.add(mntmNewMenuItem);
+		
+		JMenuItem mntmAltaEventos = new JMenuItem("Alta Eventos");
+		mnNewMenu_1.add(mntmAltaEventos);
+		
+		JMenu mnNewMenu_2 = new JMenu("Deportista");
+		menuBar.add(mnNewMenu_2);
+		
+		JMenuItem mntmConsulta_1 = new JMenuItem("Consulta");
+		mnNewMenu_2.add(mntmConsulta_1);
+		
+		JMenuItem mntmAltaDeportista = new JMenuItem("Alta Deportista");
+		mnNewMenu_2.add(mntmAltaDeportista);
+		
+		JMenu mnParticipacin = new JMenu("Participaciónes");
+		menuBar.add(mnParticipacin);
+		
+		JMenuItem mntmConsultaParticipacin = new JMenuItem("Consulta");
+		mnParticipacin.add(mntmConsultaParticipacin);
+		
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Alta Participación");
+		mnParticipacin.add(mntmNewMenuItem_3);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Equipo");
+		mntmNewMenuItem_2.setHorizontalAlignment(SwingConstants.CENTER);
+		mntmNewMenuItem_2.setBackground(new Color(30, 144, 255));
+		menuBar.add(mntmNewMenuItem_2);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Deportes");
+		mntmNewMenuItem_1.setHorizontalAlignment(SwingConstants.LEFT);
+		mntmNewMenuItem_1.setBackground(new Color(30, 144, 255));
+		menuBar.add(mntmNewMenuItem_1);
+		logo = new JPanel();
+		logo.setBackground(UIManager.getColor("Button.highlight"));
+		logo.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(logo);
+		logo.setLayout(null);
+		
+		JLabel Titulo = new JLabel("Gestion de Olimpiadas");
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(Titulo);
+		Titulo.setFont(new Font("Dialog", Font.BOLD, 26));
+		Titulo.setBounds(101, 68, 354, 32);
+		logo.add(Titulo);
 		
-		/*
-		 * btnAceptar = new JButton("Buscar"); btnAceptar.addActionListener(new
-		 * ActionListener() { public void actionPerformed(ActionEvent arg0) {
-		 * buscarCoincidencias(arg0); } });
-		btnAceptar.setBounds(253, 71, 163, 19);
-		contentPane.add(btnAceptar);*/
-		
-		txtNombre = new JTextField();
-		txtNombre.setBounds(103, 71, 114, 19);
-		contentPane.add(txtNombre);
-		txtNombre.setColumns(10);
-		
-		lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(31, 73, 70, 15);
-		contentPane.add(lblNombre);
+		JLabel Titulo_1_1 = new JLabel("");
+		Titulo_1_1.setVerticalAlignment(SwingConstants.TOP);
+		Titulo_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		Titulo_1_1.setIcon(new ImageIcon("/home/dm2/Escritorio/DAM/UD1-DEIN/ProyectoDEIN/src/Images/1200px-Olympic_rings_without_rims.svg.png"));
+		Titulo_1_1.setFont(new Font("Dialog", Font.BOLD, 26));
+		Titulo_1_1.setBounds(45, 23, 483, 196);
+		logo.add(Titulo_1_1);
 		
 
 	}

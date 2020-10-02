@@ -15,10 +15,12 @@ import BD.clsgestorLD;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import java.awt.SystemColor;
 import java.awt.Color;
+import java.awt.Dimension;
 
 public class vPrincipal extends JFrame {
 
@@ -30,13 +32,14 @@ public class vPrincipal extends JFrame {
 	 */
 	public vPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 555, 300);
+		setBounds(100, 100, 555, 354);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setFont(new Font("Dialog", Font.BOLD, 17));
 		menuBar.setForeground(new Color(0, 0, 0));
 		menuBar.setBorderPainted(false);
-		menuBar.setBackground(new Color(30, 144, 255));
+		menuBar.setBackground(new Color(230, 230, 250));
+		menuBar.add(Box.createRigidArea(new Dimension(5, 45)));
 		setJMenuBar(menuBar);
 		
 		JMenu mnNewMenu = new JMenu("Olimpiadas");
@@ -75,33 +78,27 @@ public class vPrincipal extends JFrame {
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Alta Participación");
 		mnParticipacin.add(mntmNewMenuItem_3);
 		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Equipo");
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("  Equipo");
 		mntmNewMenuItem_2.setHorizontalAlignment(SwingConstants.CENTER);
-		mntmNewMenuItem_2.setBackground(new Color(30, 144, 255));
+		mntmNewMenuItem_2.setBackground(new Color(230, 230, 250));
 		menuBar.add(mntmNewMenuItem_2);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Deportes");
 		mntmNewMenuItem_1.setHorizontalAlignment(SwingConstants.LEFT);
-		mntmNewMenuItem_1.setBackground(new Color(30, 144, 255));
+		mntmNewMenuItem_1.setBackground(new Color(230, 230, 250));
 		menuBar.add(mntmNewMenuItem_1);
 		logo = new JPanel();
-		logo.setBackground(UIManager.getColor("Button.highlight"));
+		logo.setBackground(new Color(245, 245, 245));
 		logo.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(logo);
 		logo.setLayout(null);
 		
-		JLabel Titulo = new JLabel("Gestion de Olimpiadas");
-		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo.setFont(new Font("Dialog", Font.BOLD, 26));
-		Titulo.setBounds(101, 68, 354, 32);
-		logo.add(Titulo);
-		
 		JLabel Titulo_1_1 = new JLabel("");
 		Titulo_1_1.setVerticalAlignment(SwingConstants.TOP);
 		Titulo_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo_1_1.setIcon(new ImageIcon("/home/dm2/Escritorio/DAM/UD1-DEIN/ProyectoDEIN/src/Images/1200px-Olympic_rings_without_rims.svg.png"));
+		Titulo_1_1.setIcon(new ImageIcon(vPrincipal.class.getResource("/Images/1200px-Olympic_rings_without_rims.svg.png")));
 		Titulo_1_1.setFont(new Font("Dialog", Font.BOLD, 26));
-		Titulo_1_1.setBounds(45, 23, 483, 196);
+		Titulo_1_1.setBounds(33, 22, 490, 230);
 		logo.add(Titulo_1_1);
 		
 

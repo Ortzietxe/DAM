@@ -9,16 +9,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
-import javax.swing.JTable;
-import java.awt.SystemColor;
-import javax.swing.UIManager;
-import java.awt.Color;
 
-public class vParticipaciones extends JFrame {
+public class vEventos extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -27,7 +22,7 @@ public class vParticipaciones extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					vParticipaciones frame = new vParticipaciones();
+					vEventos frame = new vEventos();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,8 +34,7 @@ public class vParticipaciones extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public vParticipaciones() {
-		setBackground(new Color(0, 100, 0));
+	public vEventos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -48,34 +42,30 @@ public class vParticipaciones extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Evento");
-		lblNewLabel.setBounds(176, 210, 46, 14);
-		contentPane.add(lblNewLabel);
-		
 		JLabel lblNewLabel_1 = new JLabel("Olimpiada");
-		lblNewLabel_1.setBounds(20, 210, 46, 14);
+		lblNewLabel_1.setBounds(23, 210, 46, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNombreDeportista = new JLabel("Nombre deportista");
-		lblNombreDeportista.setBounds(307, 210, 99, 14);
-		contentPane.add(lblNombreDeportista);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(176, 228, 116, 22);
-		contentPane.add(comboBox);
-		
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(20, 228, 146, 22);
+		comboBox_1.setBounds(23, 228, 146, 22);
 		contentPane.add(comboBox_1);
 		
-		textField = new JTextField();
-		textField.setBounds(307, 229, 99, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		JLabel lblNewLabel = new JLabel("Evento");
+		lblNewLabel.setBounds(179, 210, 46, 14);
+		contentPane.add(lblNewLabel);
 		
-		table = new JTable();
-		table.setBackground(Color.BLACK);
-		table.setBounds(356, 157, -328, -140);
-		contentPane.add(table);
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(179, 228, 116, 22);
+		contentPane.add(comboBox);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(310, 229, 99, 20);
+		contentPane.add(textField);
+		
+		JLabel lblNombreDeporte = new JLabel("Nombre deporte");
+		lblNombreDeporte.setBounds(310, 210, 99, 14);
+		contentPane.add(lblNombreDeporte);
 	}
+
 }

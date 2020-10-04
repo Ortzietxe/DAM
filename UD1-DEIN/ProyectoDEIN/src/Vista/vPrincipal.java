@@ -38,7 +38,7 @@ public class vPrincipal extends JFrame {
 		menuBar.setFont(new Font("Dialog", Font.BOLD, 17));
 		menuBar.setForeground(new Color(0, 0, 0));
 		menuBar.setBorderPainted(false);
-		menuBar.setBackground(new Color(230, 230, 250));
+		menuBar.setBackground(new Color(221, 160, 221));
 		menuBar.add(Box.createRigidArea(new Dimension(5, 45)));
 		setJMenuBar(menuBar);
 		
@@ -75,7 +75,7 @@ public class vPrincipal extends JFrame {
 		JMenuItem mntmConsultaParticipacin = new JMenuItem("Consulta");
 		mnParticipacin.add(mntmConsultaParticipacin);
 		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Alta Participación");
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Alta Participacion");
 		mnParticipacin.add(mntmNewMenuItem_3);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("  Equipo");

@@ -8,7 +8,7 @@ def generarFichero():
     with open("Datos_Olimpiadas/athlete_events.csv") as csvBase:
         reader = csv.reader(csvBase)
 
-        with open("Datos_Olimpiadas/athlete_events.csv", "w") as csvDestino:
+        with open("Datos_Olimpiadas/olimpiadas.csv", "w") as csvDestino:
             writer = csv.writer(csvDestino)
             for row in reader:
                 writer.writerow((row[8],row[9],row[10],row[11]))

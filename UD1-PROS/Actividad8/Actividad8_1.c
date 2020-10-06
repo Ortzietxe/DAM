@@ -76,7 +76,10 @@ void main ()
 			write (fd[1], saludoAbuelo, sizeof(saludoAbuelo));
 			printf ("El abuelo envía un mensaje al padre,..\n");
 			wait (NULL); // Espera al proceso padre
-			printf ("\tEl aburlo recibe un mensaje del hijo:\n"); 
+			
+			//abuelo lee
+			read (fd[0], buffer, sizeof(buffer)); // leo el pipe
+			printf ("\tEl abuelo recibe un mensaje del hijo: %s\n", buffer);
 			break;
 	}
 	exit(0);

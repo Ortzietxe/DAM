@@ -11,41 +11,18 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     public ImageView imagen;
-   public Button botonYahoo;
+   //public Button botonYahoo;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
 
+    public void Google(View v)
+    {
         imagen = findViewById(R.id.imagen);
-        botonYahoo = findViewById(R.id.button);
-        botonYahoo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                imagen.setImageResource(R.drawable.yahoo);
-            }
-        });
-    }
-
-  /*  public void mostrarYahoo(View v)
-    {
-        ImageView imagen = findViewById(R.id.imagen);
-        imagen.setImageResource(R.drawable.yahoo);
-    }
-*/
-    public void mostrarBing(View v)
-    {
-        //ImageView imagen = findViewById(R.id.imagen);
-        Toast.makeText(this, "aaaa", Toast.LENGTH_LONG).show();
-        imagen.setImageResource(R.drawable.bing);
-    }
-
-    public void mostrarGoogle(View v)
-    {
-        ImageView imagen = findViewById(R.id.imagen);
         imagen.setImageResource(R.drawable.google);
     }
 }

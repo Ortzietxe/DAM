@@ -1,6 +1,7 @@
 package Vista;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -22,6 +23,8 @@ import java.awt.SystemColor;
 import java.awt.Color;
 import java.awt.Dimension;
 
+import Controlador.Controlador;
+
 public class vPrincipal extends JFrame {
 
 	private JPanel logo;
@@ -38,57 +41,90 @@ public class vPrincipal extends JFrame {
 		menuBar.setFont(new Font("Dialog", Font.BOLD, 17));
 		menuBar.setForeground(new Color(0, 0, 0));
 		menuBar.setBorderPainted(false);
-		menuBar.setBackground(new Color(221, 160, 221));
+		menuBar.setBackground(new Color(0, 0, 51));
 		menuBar.add(Box.createRigidArea(new Dimension(5, 45)));
 		setJMenuBar(menuBar);
 		
 		JMenu mnNewMenu = new JMenu("Olimpiadas");
+		mnNewMenu.setForeground(new Color(255, 255, 255));
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmConsulta = new JMenuItem("Consulta");
+		mntmConsulta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null, "vamonos wey");
+			}
+		});
+		mntmConsulta.setBackground(Color.BLACK);
+		mntmConsulta.setForeground(Color.WHITE);
 		mnNewMenu.add(mntmConsulta);
 		
 		JMenuItem mntmAltaOlimpiada = new JMenuItem("Alta olimpiada");
+		mntmAltaOlimpiada.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Controlador.mostrarAltaOlimpiada();
+			}
+		});
+		mntmAltaOlimpiada.setForeground(Color.WHITE);
+		mntmAltaOlimpiada.setBackground(Color.BLACK);
 		mnNewMenu.add(mntmAltaOlimpiada);
 		
 		JMenu mnNewMenu_1 = new JMenu("Eventos");
+		mnNewMenu_1.setBackground(Color.BLACK);
+		mnNewMenu_1.setForeground(new Color(255, 255, 255));
 		menuBar.add(mnNewMenu_1);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Consulta");
+		mntmNewMenuItem.setForeground(Color.WHITE);
+		mntmNewMenuItem.setBackground(Color.BLACK);
 		mnNewMenu_1.add(mntmNewMenuItem);
 		
 		JMenuItem mntmAltaEventos = new JMenuItem("Alta Eventos");
+		mntmAltaEventos.setForeground(Color.WHITE);
+		mntmAltaEventos.setBackground(Color.BLACK);
 		mnNewMenu_1.add(mntmAltaEventos);
 		
 		JMenu mnNewMenu_2 = new JMenu("Deportista");
+		mnNewMenu_2.setForeground(new Color(255, 255, 255));
 		menuBar.add(mnNewMenu_2);
 		
 		JMenuItem mntmConsulta_1 = new JMenuItem("Consulta");
+		mntmConsulta_1.setBackground(Color.BLACK);
+		mntmConsulta_1.setForeground(Color.WHITE);
 		mnNewMenu_2.add(mntmConsulta_1);
 		
 		JMenuItem mntmAltaDeportista = new JMenuItem("Alta Deportista");
+		mntmAltaDeportista.setForeground(Color.WHITE);
+		mntmAltaDeportista.setBackground(Color.BLACK);
 		mnNewMenu_2.add(mntmAltaDeportista);
 		
 		JMenu mnParticipacin = new JMenu("Participaciónes");
+		mnParticipacin.setForeground(new Color(255, 255, 255));
 		menuBar.add(mnParticipacin);
 		
 		JMenuItem mntmConsultaParticipacin = new JMenuItem("Consulta");
+		mntmConsultaParticipacin.setBackground(Color.BLACK);
+		mntmConsultaParticipacin.setForeground(Color.WHITE);
 		mnParticipacin.add(mntmConsultaParticipacin);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Alta Participacion");
+		mntmNewMenuItem_3.setForeground(Color.WHITE);
+		mntmNewMenuItem_3.setBackground(Color.BLACK);
 		mnParticipacin.add(mntmNewMenuItem_3);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("  Equipo");
+		mntmNewMenuItem_2.setForeground(new Color(255, 255, 255));
 		mntmNewMenuItem_2.setHorizontalAlignment(SwingConstants.CENTER);
-		mntmNewMenuItem_2.setBackground(new Color(230, 230, 250));
+		mntmNewMenuItem_2.setBackground(new Color(0, 0, 51));
 		menuBar.add(mntmNewMenuItem_2);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Deportes");
+		mntmNewMenuItem_1.setForeground(new Color(255, 255, 255));
 		mntmNewMenuItem_1.setHorizontalAlignment(SwingConstants.LEFT);
-		mntmNewMenuItem_1.setBackground(new Color(230, 230, 250));
+		mntmNewMenuItem_1.setBackground(new Color(0, 0, 51));
 		menuBar.add(mntmNewMenuItem_1);
 		logo = new JPanel();
-		logo.setBackground(new Color(245, 245, 245));
+		logo.setBackground(Color.WHITE);
 		logo.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(logo);
 		logo.setLayout(null);

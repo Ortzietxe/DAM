@@ -42,22 +42,22 @@ public class vParticipaciones extends JFrame {
 	public vParticipaciones() {
 		setBackground(new Color(0, 100, 0));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 460, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Evento");
-		lblNewLabel.setBounds(176, 210, 46, 14);
+		lblNewLabel.setBounds(176, 210, 84, 14);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Olimpiada");
-		lblNewLabel_1.setBounds(20, 210, 46, 14);
+		lblNewLabel_1.setBounds(20, 210, 84, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNombreDeportista = new JLabel("Nombre deportista");
-		lblNombreDeportista.setBounds(307, 210, 99, 14);
+		lblNombreDeportista.setBounds(307, 210, 162, 14);
 		contentPane.add(lblNombreDeportista);
 		
 		JComboBox comboBox = new JComboBox();
@@ -69,7 +69,7 @@ public class vParticipaciones extends JFrame {
 		contentPane.add(comboBox_1);
 		
 		textField = new JTextField();
-		textField.setBounds(307, 229, 99, 20);
+		textField.setBounds(307, 229, 141, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		

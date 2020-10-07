@@ -11,8 +11,7 @@ public class Main
 	{
 		
 		//Arranco el controlador para la gestión de ventanas
-		Controlador objControlador = new Controlador();
-		objControlador.MostrarVentanaPrincipal();
+		Controlador.mostrarVentanaPrincipal();
 		
 	}
 	

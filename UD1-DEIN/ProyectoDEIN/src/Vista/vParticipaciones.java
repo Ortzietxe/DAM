@@ -20,25 +20,6 @@ public class vParticipaciones extends JFrame {
 	private JTextField textField;
 	private JTable table;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					vParticipaciones frame = new vParticipaciones();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public vParticipaciones() {
 		setBackground(new Color(0, 100, 0));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

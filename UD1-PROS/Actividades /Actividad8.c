@@ -14,6 +14,7 @@ void main ()
 	char saludoNieto[]="Saludo del nieto";
 	pid_t pid,pid2;
 	pipe(fd);  
+	pipe(fd2);
 	
 	pid = fork();
 
@@ -23,10 +24,7 @@ void main ()
 			exit (-1);
 		break;
     	case 0:   // Padre recibe	
-
-
-// *********************Crea el 2º pipe por delante de fork()
-            pipe(fd2);
+            
 			pid2 = fork();
 			
 			
@@ -67,7 +65,9 @@ void main ()
 
 					read (fd[0], buffer, sizeof(buffer)); // leo el pipe
 					printf ("\tEl padre recibe un mensaje del hijo: %s\n", buffer);
-									
+
+					write (fd2[1], saludoPadre, sizeof(saludoPadre));
+					printf ("\tEl padre envía un mensaje al abuelo,..\n");				
 					break;
 			}
 			break;
@@ -78,8 +78,8 @@ void main ()
 			wait (NULL); // Espera al proceso padre
 			
 			//abuelo lee
-			read (fd[0], buffer, sizeof(buffer)); // leo el pipe
-			printf ("\tEl abuelo recibe un mensaje del hijo: %s\n", buffer);
+			read (fd2[0], buffer, sizeof(buffer)); // leo el pipe
+			printf ("El abuelo recibe un mensaje del hijo: %s\n", buffer);
 			break;
 	}
 	exit(0);

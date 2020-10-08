@@ -1,5 +1,6 @@
 package Controlador;
 
+import BD.BDOlimpiadas;
 import Modelo.Olimpiada;
 import Vista.*;
 
@@ -7,7 +8,7 @@ public class Controlador
 {
 	private static vPrincipal vp;
 	private static vAltaOlimpiada vao;
-	//private static Olimpiada o;
+	private static Olimpiada oOlimpiada;
 	
 	public static void mostrarVentanaPrincipal()
 	{
@@ -27,9 +28,10 @@ public class Controlador
 		vao.setVisible(true);
 	}
 	
-	public void altaOlimpiada(Olimpiada o) 
+	public static void altaOlimpiada(String nombre, int anio, String ciudad, String temporada) 
 	{
-		//oOlimpiadaBD = BDOlimpiadas.BDalta(o);
+		oOlimpiada = new Olimpiada(nombre, anio, temporada, ciudad);
+		BDOlimpiadas.altaOlimpiadaBD(oOlimpiada);
 	}
 	
 }

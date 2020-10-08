@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controlador.Controlador;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -13,29 +16,15 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Color;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class vAltaOlimpiada extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					vAltaOlimpiada frame = new vAltaOlimpiada();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JTextField nomOlimpiada;
+	private JTextField anioOlimpiada;
+	private JTextField ciudadOlimpiada;
 
 	/**
 	 * Create the frame.
@@ -58,39 +47,44 @@ public class vAltaOlimpiada extends JFrame {
 		lblNewLabel_1.setBounds(12, 64, 70, 15);
 		contentPane.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setBounds(79, 65, 114, 19);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		nomOlimpiada = new JTextField();
+		nomOlimpiada.setBounds(79, 65, 114, 19);
+		contentPane.add(nomOlimpiada);
+		nomOlimpiada.setColumns(10);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Año");
 		lblNewLabel_1_1.setBounds(211, 64, 40, 15);
 		contentPane.add(lblNewLabel_1_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(300, 65, 105, 19);
-		contentPane.add(textField_1);
+		anioOlimpiada = new JTextField();
+		anioOlimpiada.setColumns(10);
+		anioOlimpiada.setBounds(300, 65, 105, 19);
+		contentPane.add(anioOlimpiada);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Temporada");
 		lblNewLabel_1_2.setBounds(211, 109, 86, 15);
 		contentPane.add(lblNewLabel_1_2);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(79, 107, 114, 19);
-		contentPane.add(textField_2);
+		ciudadOlimpiada = new JTextField();
+		ciudadOlimpiada.setColumns(10);
+		ciudadOlimpiada.setBounds(79, 107, 114, 19);
+		contentPane.add(ciudadOlimpiada);
 		
 		JLabel lblNewLabel_1_2_1 = new JLabel("Ciudad");
 		lblNewLabel_1_2_1.setBounds(12, 109, 70, 15);
 		contentPane.add(lblNewLabel_1_2_1);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Verano", "Invierno"}));
-		comboBox.setBounds(300, 107, 105, 19);
-		contentPane.add(comboBox);
+		JComboBox temporadaOlimpiada = new JComboBox();
+		temporadaOlimpiada.setModel(new DefaultComboBoxModel(new String[] {"Verano", "Invierno"}));
+		temporadaOlimpiada.setBounds(300, 107, 105, 19);
+		contentPane.add(temporadaOlimpiada);
 		
 		JButton btnNewButton = new JButton("Dar de alta");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Controlador.altaOlimpiada(nomOlimpiada.getText(), Integer.parseInt(anioOlimpiada.getText()), ciudadOlimpiada.getText(), temporadaOlimpiada.getSelectedItem().toString());
+			}
+		});
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(Color.BLACK);
 		btnNewButton.setBounds(166, 158, 123, 25);

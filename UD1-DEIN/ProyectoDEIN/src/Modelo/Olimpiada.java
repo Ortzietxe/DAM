@@ -7,6 +7,13 @@ public class Olimpiada {
 	private String temporada;
 	private String ciudad;
 	
+	public Olimpiada(String nombre, int anio, String temporada, String ciudad) {
+		this.nombre = nombre;
+		this.anio = anio;
+		this.temporada = temporada;
+		this.ciudad = ciudad;
+	}
+	
 	public int getIdOlimpiada() {
 		return idOlimpiada;
 	}

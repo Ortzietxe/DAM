@@ -93,6 +93,11 @@ public class vPrincipal extends JFrame {
 		mnNewMenu_2.add(mntmConsulta_1);
 		
 		JMenuItem mntmAltaDeportista = new JMenuItem("Alta Deportista");
+		mntmAltaDeportista.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Controlador.mostrarAltaDeportista();
+			}
+		});
 		mntmAltaDeportista.setForeground(Color.WHITE);
 		mntmAltaDeportista.setBackground(Color.BLACK);
 		mnNewMenu_2.add(mntmAltaDeportista);

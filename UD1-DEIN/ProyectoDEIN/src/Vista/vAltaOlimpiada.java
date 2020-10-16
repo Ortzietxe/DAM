@@ -48,9 +48,9 @@ public class vAltaOlimpiada extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		nomOlimpiada = new JTextField();
+		nomOlimpiada.setColumns(10);
 		nomOlimpiada.setBounds(79, 65, 114, 19);
 		contentPane.add(nomOlimpiada);
-		nomOlimpiada.setColumns(10);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Año");
 		lblNewLabel_1_1.setBounds(211, 64, 40, 15);
@@ -75,7 +75,7 @@ public class vAltaOlimpiada extends JFrame {
 		contentPane.add(lblNewLabel_1_2_1);
 		
 		JComboBox temporadaOlimpiada = new JComboBox();
-		temporadaOlimpiada.setModel(new DefaultComboBoxModel(new String[] {"Verano", "Invierno"}));
+		temporadaOlimpiada.setModel(new DefaultComboBoxModel(new String[] {"Summer", "Winter"}));
 		temporadaOlimpiada.setBounds(300, 107, 105, 19);
 		contentPane.add(temporadaOlimpiada);
 		

@@ -1,4 +1,4 @@
-//Actividad9crea.c
+//actividad9crea.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -8,20 +8,20 @@
 
 int main (void)
 {
-	int fp;
-	int p, bytesleidos;
-	char saludo[] = "Un saludo \n", buffer [10];
+	int fp, p, bytesleidos;
+	char saludo[] = "Un saludo !!!!!\n", buffer [10];
+
 	p=mknod("FIFO2", S_IFIFO|0666, 0); /// permiso de lectura y escritura
 	
-	if (p== -1) {
+	if (p == -1) {
 		printf("Ha ocurrido un error.... \n"); // recuerda borrarlo la segunda vez...
 		exit (0);
 	}
 
-	while (1) { // bucle infinito
+	while(1){ // bucle infinito
 		fp = open ("FIFO2", 0); // abro el pipe FIFO2 en modo lectura
 		bytesleidos = read(fp, buffer, 1); // leo el primer byte
-		printf("Obteniendo información..."); 
+		printf("Obteniendo información...\n"); 
 		while (bytesleidos != 0) {
 			printf("%s", buffer);
 			bytesleidos = read (fp, buffer, 1); // leo otro byte

@@ -91,7 +91,7 @@
         android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:srcCompat="@drawable/camara" />
+        android:src="@drawable/camara" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -101,7 +101,7 @@
         android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:srcCompat="@drawable/camara" />
+        android:src="@drawable/camara" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -110,7 +110,7 @@
         android:layout_marginTop="28dp"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/toggleButton2"
-        app:srcCompat="@drawable/apagada" />
+        android:src="@drawable/apagada" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -120,6 +120,6 @@
         android:layout_marginTop="28dp"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/toggleButton2"
-        app:srcCompat="@drawable/apagada" />
+        android:src="@drawable/apagada" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

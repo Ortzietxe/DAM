@@ -20,7 +20,7 @@ public class conexionBasedeDatos {
  		   Connection con = DriverManager.getConnection(URL+SCHEMA+PARAMS,USER,PASS);
  		   
            return con;
-           }
+        }
         catch( Exception e){
         	return null;
         }
@@ -28,7 +28,7 @@ public class conexionBasedeDatos {
     public static void cerrar()
     {
         try{
-        con.close();
+        	con.close();
         }
         
         catch(Exception e){}

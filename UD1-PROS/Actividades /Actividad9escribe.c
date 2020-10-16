@@ -1,16 +1,13 @@
-//Actividad9escribe.c
+//actividad9escribe.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <fcntl.h>
 
 int main (void)
 {
-	int fp, p, bytesleidos;
-	char saludo[] = "Un saludo \n", buffer [10];
-	p=mknod("FIFO2", S_IFIFO|0666, 0); /// permiso de lectura y escritura
-	
+	int fp, p, bytesleidos;;
+	char saludo[] = "Un saludo !!!!!\n";
 	fp = open ("FIFO2", 1); /// abro el pipe FIFO2 con permiso de escritura
 	if (fp == -1) {
 		printf("Error al abrir el fichero... \n");

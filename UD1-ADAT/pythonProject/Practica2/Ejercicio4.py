@@ -55,21 +55,35 @@ def buscarOlimpiadasPorSede():
     mostrarMenu()
 
 def eliminarEdicionOlimpica():
+    lista = [];
     temporada = input("introduce la temporada de la olimpiada , 'summer o winter'")
 
     encontrado = False
 
     with open("Datos_Olimpiadas/olimpiadas.text", "rb") as ficheroPickle:
         try:
-            while True:
+            while True: 
                 objOlimpiada = pickle.load(ficheroPickle)
                 if temporada.lower() in objOlimpiada.temporada.lower():
                     print(objOlimpiada)
+                    confirmar = input("es esta la olimpiada que quieres borrar[SI/NO]").lower() 
+                    if confirmar == "no"
+                        lista.append(objOlimpiada)
                     encontrado = True
+                else
+                    lista.append(objOlimpiada)
         except(EOFError):
             pass
     if not encontrado:
         print("No existe ninguna olimpiada en el que el nombre de la sede contenga " + ciudad)
+        
+    with open("Datos_Olimpiadas/olimpiadas.text", "wb") as ficheroPickle:
+        pickle.dump("", ficheroPickle)
+        
+    with open("Datos_Olimpiadas/olimpiadas.text", "ab") as ficheroPickle:
+    for olimpiadas in lista
+        pickle.dump(olimpiada, ficheroPickle)
+        
     mostrarMenu()
 
 def salir():

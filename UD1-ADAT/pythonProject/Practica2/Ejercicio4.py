@@ -62,7 +62,7 @@ def eliminarEdicionOlimpica():
 
     with open("Datos_Olimpiadas/olimpiadas.text", "rb") as ficheroPickle:
         try:
-            while True:
+            while True: 
                 objOlimpiada = pickle.load(ficheroPickle)
                 if temporada.lower() in objOlimpiada.temporada.lower() and anio == objOlimpiada.year:
                     print(objOlimpiada)

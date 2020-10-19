@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Actividad2Comprobar extends AppCompatActivity {
 
@@ -15,7 +17,7 @@ public class Actividad2Comprobar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad2_comprobar);
 
-        campoComprobacion = findViewById(R.id.usuario);
+        campoComprobacion = findViewById(R.id.comprobado);
 
         Bundle extras = getIntent().getExtras();
         int num1 = extras.getInt("num1");
@@ -38,6 +40,7 @@ public class Actividad2Comprobar extends AppCompatActivity {
     {
         campoComprobacion = findViewById(R.id.comprobado);
         String comprobacion = campoComprobacion.getText().toString();
+
         Intent intent = new Intent(Actividad2Comprobar.this, Actividad2.class);
         if(comprobacion == "CORRECTA")
         {

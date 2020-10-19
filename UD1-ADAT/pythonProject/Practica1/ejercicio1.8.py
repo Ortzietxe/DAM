@@ -4,7 +4,7 @@ class Persona:
         self.edad = edad
         self.dni = dni
         self.sexo = sexo
-        self.peso  = peso
+        self.peso = peso
         self.altura = altura
 
     def getNombre(self):

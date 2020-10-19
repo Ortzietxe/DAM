@@ -10,6 +10,7 @@ public class Controlador
 	private static vPrincipal vp;
 	private static vAltaOlimpiada vao;
 	private static vAltaDeportista vad;
+	private static vAltaEvento vae;
 	private static Olimpiada oOlimpiada;
 	private static Deportista oDeportista;
 	
@@ -37,17 +38,29 @@ public class Controlador
 		BDOlimpiadas.altaOlimpiadaBD(oOlimpiada);
 	}
 
+	public static void mostrarAltaDeportista() {
+		vp.setVisible(false);
+		
+		vad = new vAltaDeportista();
+		vad.setVisible(true);		
+	}
+	
 	public static void altaDeportista(String nombre, String genero, int peso, int altura) {
 		oDeportista = new Deportista(nombre,genero,peso,altura);
 		BDDeportistas.altaDeportistaBD(oDeportista);
 		
 	}
 
-	public static void mostrarAltaDeportista() {
+	public static void mostrarAltaEvento() {
 		vp.setVisible(false);
 		
-		vad = new vAltaDeportista();
-		vad.setVisible(true);		
+		vae = new vAltaEvento();
+		vae.setVisible(true);		
+	}
+	
+	public static void altaEvento(String nomEvento, String nomOlimpiada, String nomDeporte) {
+	
+		
 	}
 	
 }

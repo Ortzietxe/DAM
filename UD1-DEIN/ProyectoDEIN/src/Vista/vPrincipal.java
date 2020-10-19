@@ -23,6 +23,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import Controlador.Controlador;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class vPrincipal extends JFrame {
 
@@ -35,6 +37,7 @@ public class vPrincipal extends JFrame {
 	public vPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 555, 354);
+		setUndecorated(true);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setFont(new Font("Dialog", Font.BOLD, 17));
@@ -138,8 +141,20 @@ public class vPrincipal extends JFrame {
 		Titulo_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		Titulo_1_1.setIcon(new ImageIcon(vPrincipal.class.getResource("/Images/1200px-Olympic_rings_without_rims.svg.png")));
 		Titulo_1_1.setFont(new Font("Dialog", Font.BOLD, 26));
-		Titulo_1_1.setBounds(33, 22, 490, 230);
+		Titulo_1_1.setBounds(32, 31, 490, 230);
 		logo.add(Titulo_1_1);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				System.exit(0);
+			}
+		});
+		lblNewLabel.setIcon(new ImageIcon(vPrincipal.class.getResource("/Images/logout.png")));
+		lblNewLabel.setBounds(505, 249, 38, 58);
+		logo.add(lblNewLabel);
 		
 
 	}

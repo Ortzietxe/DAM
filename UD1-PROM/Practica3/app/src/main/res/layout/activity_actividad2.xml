@@ -8,30 +8,28 @@
 
     <TextView
         android:id="@+id/incorrectas"
-        android:layout_width="4dp"
-        android:layout_height="15dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/button10" />
 
-    <EditText
+    <TextView
         android:id="@+id/num1"
         android:layout_width="76dp"
         android:layout_height="47dp"
         android:layout_marginStart="64dp"
         android:ems="10"
-        android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <EditText
+    <TextView
         android:id="@+id/num2"
         android:layout_width="76dp"
         android:layout_height="47dp"
         android:layout_marginStart="16dp"
         android:ems="10"
-        android:inputType="number"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -87,13 +85,14 @@
         android:ems="10"
         android:inputType="number"
         app:layout_constraintStart_toEndOf="@+id/num2"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        android:autofillHints="" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="32dp"
         android:text="Resultados correctos"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,7 +102,7 @@
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="52dp"
         android:layout_marginTop="32dp"
         android:text="Resultados incorrectos"
         app:layout_constraintStart_toEndOf="@+id/textView8"
@@ -111,9 +110,10 @@
 
     <TextView
         android:id="@+id/correctas"
-        android:layout_width="6dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/button10" />
 

@@ -6,11 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.Random;
 
 public class Actividad2 extends AppCompatActivity {
 
-    EditText campoCorrectas;
-    EditText campoIncorrectas;
+    TextView campoCorrectas;
+    TextView campoIncorrectas;
+    TextView campoNum1;
+    TextView campoNum2;
+    EditText campoResultado;
+    int randNum1, randNum2;
     int correctas = 0;
     int incorrectas = 0;
 
@@ -19,20 +26,32 @@ public class Actividad2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad2);
 
-        campoCorrectas = findViewById(R.id.num1);
-        campoIncorrectas = findViewById(R.id.num1);
+        campoCorrectas = findViewById(R.id.correctas);
+        campoCorrectas.setText("" + correctas);
+
+        campoIncorrectas = findViewById(R.id.incorrectas);
+        campoIncorrectas.setText("" + incorrectas);
+
+        campoNum1 = findViewById(R.id.num1);
+        campoNum2 = findViewById(R.id.num2);
+
+        randNum1 = new Random().nextInt(99);
+        campoNum1.setText("" + randNum1);
+
+        randNum2 = new Random().nextInt(99);
+        campoNum2.setText("" + randNum2);
+
+        campoResultado = findViewById(R.id.resultado);
     }
 
 
     public void comprobar(View v)
     {
-        EditText campoNum1 = findViewById(R.id.num1);
+
         int num1 = Integer.parseInt(campoNum1.getText().toString());
 
-        EditText campoNum2 = findViewById(R.id.num2);
         int num2 = Integer.parseInt(campoNum2.getText().toString());
 
-        EditText campoResultado = findViewById(R.id.resultado);
         int resultado = Integer.parseInt(campoResultado.getText().toString());
 
         Intent intent = new Intent(Actividad2.this, Actividad2Comprobar.class);
@@ -47,14 +66,24 @@ public class Actividad2 extends AppCompatActivity {
 
         if (requestCode == 1234 && resultCode == RESULT_OK) {
             String res = data.getExtras().getString("comprobacion");
-            if(res == "correcta")
+            if(res.equals("correcta"))
             {
                 correctas++;
+                campoCorrectas.setText("" + correctas);
             }
             else
             {
                 incorrectas++;
+                campoIncorrectas.setText("" + incorrectas);
             }
+
+            randNum1 = new Random().nextInt(99);
+            campoNum1.setText("" + randNum1);
+
+            randNum2 = new Random().nextInt(99);
+            campoNum2.setText("" + randNum2);
+
+            campoResultado.setText("");
         }
     }
 }

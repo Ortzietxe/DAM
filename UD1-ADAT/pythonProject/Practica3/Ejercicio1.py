@@ -7,12 +7,22 @@ def crearBBDDMySQL():
 
     cursor = con.cursor()
 
+    id = 0
+
+    with open()
     with open("ficheros_csv_xml_sql/athlete_events-sort.csv", "r") as csvBase:
         reader = csv.reader(csvBase)
-        cursor.execute("DELETE FROM Deportista")
         for row in reader:
-            #cursor.execute("INSERT INTO Deportista(id_deportista, nombre, sexo, peso, altura) VALUES(" + row[0] + row[1] + row[2] + row[4] + row[5] + ");")
-            pass
+            if id != row[0]:
+                id = row[0]
+                if row[4] == "NA":
+                    row[4] = 0
+                if row[5] == "NA":
+                    row[5] = 0
+                #cursor.execute("INSERT INTO Deportista(id_deportista, nombre, sexo, peso, altura) VALUES(" + row[0] + ",'" + row[1] + "','" + row[2] + "'," + row[4] + "," + row[5] + ");")
+                cmd = "INSERT INTO Deportista(id_deportista, nombre, sexo, peso, altura) VALUES(%s , %s, %s, %s, %s)"
+                cursor.execute(cmd, (row[0], row[1], row[2], row[4], row[5]))
+    con.commit()
     con.close()
 
 

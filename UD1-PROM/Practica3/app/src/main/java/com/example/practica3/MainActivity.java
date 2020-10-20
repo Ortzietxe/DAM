@@ -28,12 +28,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void mostrarActividad3(View v)
     {
-
+        Intent intent = new Intent(MainActivity.this, Actividad3.class);
+        startActivity(intent);
     }
 
     public void mostrarActividad4(View v)
     {
-
+        /*Intent intent = new Intent(MainActivity.this, Actividad4.class);
+        startActivity(intent);*/
     }
 
     public void salir(View v)

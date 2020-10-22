@@ -1,10 +1,8 @@
 package Vista;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.AbstractBorder;
 import javax.swing.border.EmptyBorder;
 
 import Controlador.Controlador;
@@ -19,6 +17,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import ComponentesPersonalizados.*;
+
 public class vAltaOlimpiada extends JFrame {
 
 	private JPanel contentPane;
@@ -30,13 +30,18 @@ public class vAltaOlimpiada extends JFrame {
 	 * Create the frame.
 	 */
 	public vAltaOlimpiada() {
+		  
+		setOpacity(0.0f);
+		getContentPane().setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 220);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        AbstractBorder brdr = new TextBubbleBorder(Color.BLACK,1,8,0);
+        contentPane.setBorder(brdr);
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setUndecorated(true);
 		
 		JLabel lblNewLabel = new JLabel("Alta Olimpiada");
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 24));
@@ -80,6 +85,7 @@ public class vAltaOlimpiada extends JFrame {
 		contentPane.add(temporadaOlimpiada);
 		
 		JButton btnNewButton = new JButton("Dar de alta");
+        btnNewButton.setBorder(brdr);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Controlador.altaOlimpiada(nomOlimpiada.getText(), Integer.parseInt(anioOlimpiada.getText()), ciudadOlimpiada.getText(), temporadaOlimpiada.getSelectedItem().toString());
@@ -89,5 +95,11 @@ public class vAltaOlimpiada extends JFrame {
 		btnNewButton.setBackground(Color.BLACK);
 		btnNewButton.setBounds(166, 158, 123, 25);
 		contentPane.add(btnNewButton);
+		
+		botonVolver volver = new botonVolver();
+		volver.setToolTipText("volver");
+		volver.setLocation(395, 5);
+		contentPane.add(volver);
+		
 	}
 }

@@ -35,6 +35,7 @@ public class vAltaEvento extends JFrame {
 		//setUndecorated(true);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setUndecorated(true);
 		
 		JLabel lblAltaEvento = new JLabel("Alta Evento");
 		lblAltaEvento.setFont(new Font("Dialog", Font.BOLD, 24));

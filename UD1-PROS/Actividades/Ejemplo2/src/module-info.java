@@ -1,0 +1,2 @@
+module Ejemplo2 {
+}

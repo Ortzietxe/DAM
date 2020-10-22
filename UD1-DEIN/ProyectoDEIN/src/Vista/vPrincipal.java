@@ -26,7 +26,7 @@ import Controlador.Controlador;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class vPrincipal extends JFrame {
+public class vPrincipal extends clsFormHelp {
 
 	private JPanel logo;
 	private JButton btnAceptar;
@@ -35,6 +35,9 @@ public class vPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public vPrincipal() {
+		super();
+		this.setHelp();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 555, 354);
 		setUndecorated(true);
@@ -158,4 +161,7 @@ public class vPrincipal extends JFrame {
 		
 
 	}
+	
+	public void setHelp() 
+	{}
 }

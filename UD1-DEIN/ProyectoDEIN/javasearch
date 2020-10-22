@@ -1,0 +1,2 @@
+cd <ruta de proyecto>\Help
+$ java -jar "C:\Program Files\Java\javahelp2_0_05\jh2.0\javahelp\bin\jhindexer.jar" html

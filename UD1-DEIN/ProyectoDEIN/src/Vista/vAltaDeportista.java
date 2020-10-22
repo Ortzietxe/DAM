@@ -38,6 +38,7 @@ public class vAltaDeportista extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setUndecorated(true);
 		
 		JLabel lblNewLabel = new JLabel("Alta Deportista");
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 24));

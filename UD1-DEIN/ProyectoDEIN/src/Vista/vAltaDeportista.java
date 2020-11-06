@@ -5,8 +5,11 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.AbstractBorder;
 import javax.swing.border.EmptyBorder;
 
+import ComponentesPersonalizados.TextBubbleBorder;
+import ComponentesPersonalizados.botonVolver;
 import Controlador.Controlador;
 
 import java.awt.Color;
@@ -14,6 +17,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -32,13 +36,15 @@ public class vAltaDeportista extends JFrame {
 	 */
 	public vAltaDeportista() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 230);
+		setBounds(100, 100, 450, 200);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		AbstractBorder brdr = new TextBubbleBorder(Color.BLACK,1,8,0);
+		contentPane.setBorder(brdr);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		setUndecorated(true);
+		this.setUndecorated(true);
+		this.setShape( new RoundRectangle2D.Double(0, 0, this.getWidth(), this.getHeight(), 10, 10));
 		
 		JLabel lblNewLabel = new JLabel("Alta Deportista");
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 24));
@@ -49,9 +55,12 @@ public class vAltaDeportista extends JFrame {
 		lblNewLabel_1.setBounds(12, 64, 70, 15);
 		contentPane.add(lblNewLabel_1);
 		
+		AbstractBorder componentbrdr = new TextBubbleBorder(Color.BLACK,0,3,0);
+		
 		nomDeportista = new JTextField();
 		nomDeportista.setColumns(10);
 		nomDeportista.setBounds(79, 65, 114, 19);
+		nomDeportista.setBorder(componentbrdr);
 		contentPane.add(nomDeportista);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Peso");
@@ -61,6 +70,7 @@ public class vAltaDeportista extends JFrame {
 		pesoDeportista = new JTextField();
 		pesoDeportista.setColumns(10);
 		pesoDeportista.setBounds(300, 65, 105, 19);
+		pesoDeportista.setBorder(componentbrdr);
 		contentPane.add(pesoDeportista);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Sexo");
@@ -70,6 +80,7 @@ public class vAltaDeportista extends JFrame {
 		alturaDeportista = new JTextField();
 		alturaDeportista.setColumns(10);
 		alturaDeportista.setBounds(79, 107, 114, 19);
+		alturaDeportista.setBorder(componentbrdr);
 		contentPane.add(alturaDeportista);
 		
 		JLabel lblNewLabel_1_2_1 = new JLabel("Altura");
@@ -88,10 +99,10 @@ public class vAltaDeportista extends JFrame {
 				String sexo =  sexoDeportista.getSelectedItem().toString();
 				switch(sexo) {
 				case "Hombre":
-					genero = "H";
+					genero = "M";
 					break;
 				case "Mujer":
-					genero = "M";
+					genero = "F";
 					break;	
 				}
 				Controlador.altaDeportista(nomDeportista.getText(),genero, Integer.parseInt(pesoDeportista.getText()),Integer.parseInt(alturaDeportista.getText()));
@@ -101,5 +112,18 @@ public class vAltaDeportista extends JFrame {
 		btnNewButton.setBackground(Color.BLACK);
 		btnNewButton.setBounds(166, 158, 123, 25);
 		contentPane.add(btnNewButton);
+		
+		botonVolver volver = new botonVolver();
+		vAltaDeportista frame = this;
+		volver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.setVisible(false);
+				Controlador.mostrarVentanaPrincipal();
+			}
+		});
+		volver.setSize(48, 48);
+		volver.setToolTipText("volver");
+		volver.setLocation(395, 5);
+		contentPane.add(volver);
 	}
 }

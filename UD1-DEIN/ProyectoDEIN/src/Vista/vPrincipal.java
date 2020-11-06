@@ -25,6 +25,7 @@ import java.awt.Dimension;
 import Controlador.Controlador;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 
 public class vPrincipal extends clsFormHelp {
 
@@ -85,6 +86,11 @@ public class vPrincipal extends clsFormHelp {
 		mnNewMenu_1.add(mntmNewMenuItem);
 		
 		JMenuItem mntmAltaEventos = new JMenuItem("Alta Eventos");
+		mntmAltaEventos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Controlador.mostrarAltaEvento();
+			}
+		});
 		mntmAltaEventos.setForeground(Color.WHITE);
 		mntmAltaEventos.setBackground(Color.BLACK);
 		mnNewMenu_1.add(mntmAltaEventos);
@@ -94,6 +100,18 @@ public class vPrincipal extends clsFormHelp {
 		menuBar.add(mnNewMenu_2);
 		
 		JMenuItem mntmConsulta_1 = new JMenuItem("Consulta");
+		mntmConsulta_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try 
+				{
+					Controlador.mostrarConsultaDeportista();
+				} 
+				catch (SQLException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+		});
 		mntmConsulta_1.setBackground(Color.BLACK);
 		mntmConsulta_1.setForeground(Color.WHITE);
 		mnNewMenu_2.add(mntmConsulta_1);

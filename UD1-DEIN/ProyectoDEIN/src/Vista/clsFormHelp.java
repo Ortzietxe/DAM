@@ -96,7 +96,7 @@ public abstract class clsFormHelp extends JFrame
 		String retorno="";
 		
 		retorno =this.getClassName(this);
-		System.out.println(retorno);
+
 		//retorno="clsVentanaPrincipal";
 		return retorno;
 		

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="equipos">
+        <item></item>
+        <item>Alaves</item>
+        <item>Athletic</item>
+        <item>Osasuna</item>
+        <item>Real-Sociedad</item>
+        <item>Eibar</item>
+    </string-array>
+</resources>

@@ -1,8 +1,12 @@
 package Controlador;
 
 import BD.*;
-import Modelo.*;
+import UML.*;
 import Vista.*;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 public class Controlador 
@@ -10,9 +14,11 @@ public class Controlador
 	private static vPrincipal vp;
 	private static vAltaOlimpiada vao;
 	private static vAltaDeportista vad;
+	private static vDeportistas vcd;
 	private static vAltaEvento vae;
 	private static Olimpiada oOlimpiada;
 	private static Deportista oDeportista;
+	private static ArrayList listaDeportistas;
 	
 	public static void mostrarVentanaPrincipal()
 	{
@@ -60,6 +66,28 @@ public class Controlador
 	
 	public static void altaEvento(String nomEvento, String nomOlimpiada, String nomDeporte) {
 	
+		
+	}
+
+	public static void mostrarConsultaDeportista() throws SQLException {
+		vp.setVisible(false);
+		vcd = new vDeportistas();
+
+		vcd.setVisible(true);		
+	}
+
+	public static ArrayList pedirDatos() throws SQLException {
+		listaDeportistas = BDDeportistas.buscarDeportistas();		
+		return listaDeportistas;
+	}
+
+	public static void modificarDeportista(int id, String nombre, int peso, int altura) {
+		oDeportista = new Deportista(id,nombre,peso,altura);
+		BDDeportistas.modificacionDeportistaBD(oDeportista);	
+	}
+
+	public static void borrarDeportista(int idDeportista) {
+		BDDeportistas.borrarDeportista(idDeportista);
 		
 	}
 	

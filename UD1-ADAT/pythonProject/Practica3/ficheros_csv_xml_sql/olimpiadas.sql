@@ -27,26 +27,27 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `Deporte`
 --
+DROP TABLE IF EXISTS `Participacion`;
+DROP TABLE IF EXISTS `Evento`;
+DROP TABLE IF EXISTS `Deporte`;
+DROP TABLE IF EXISTS `Deportista`;
+DROP TABLE IF EXISTS `Equipo`;
+DROP TABLE IF EXISTS `Olimpiada`;
+
 
 CREATE TABLE `Deporte` (
   `id_deporte` int(11) NOT NULL,
   `nombre` varchar(100) COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
---
--- Volcado de datos para la tabla `Deporte`
---
 
-INSERT INTO `Deporte` (`id_deporte`, `nombre`) VALUES
-(1, 'Basketball'),
-(2, 'Judo'),
-(3, 'Football');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `Deportista`
 --
+
 
 CREATE TABLE `Deportista` (
   `id_deportista` int(11) NOT NULL,
@@ -56,13 +57,8 @@ CREATE TABLE `Deportista` (
   `altura` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
---
--- Volcado de datos para la tabla `Deportista`
---
 
-INSERT INTO `Deportista` (`id_deportista`, `nombre`, `sexo`, `peso`, `altura`) VALUES
-(1, 'A Dijiang', 'M', 80, 180),
-(2, 'A Lamusi', 'M', 60, 170);
+
 
 -- --------------------------------------------------------
 
@@ -70,34 +66,16 @@ INSERT INTO `Deportista` (`id_deportista`, `nombre`, `sexo`, `peso`, `altura`) V
 -- Estructura de tabla para la tabla `Equipo`
 --
 
+
 CREATE TABLE `Equipo` (
   `id_equipo` int(11) NOT NULL,
   `nombre` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `iniciales` varchar(3) COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
---
--- Volcado de datos para la tabla `Equipo`
---
-
-INSERT INTO `Equipo` (`id_equipo`, `nombre`, `iniciales`) VALUES
-(1, 'China', 'CHN'),
-(2, 'Denmark', 'DEN');
 
 -- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `Evento`
---
-
-CREATE TABLE `Evento` (
-  `id_evento` int(11) NOT NULL,
-  `nombre` varchar(150) NOT NULL,
-  `id_olimpiada` int(11) NOT NULL,
-  `id_deporte` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
-
--- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `Olimpiada`
@@ -111,20 +89,27 @@ CREATE TABLE `Olimpiada` (
   `ciudad` varchar(50) COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
+-- --------------------------------------------------------
 --
--- Volcado de datos para la tabla `Olimpiada`
+-- Estructura de tabla para la tabla `Evento`
 --
 
-INSERT INTO `Olimpiada` (`id_olimpiada`, `nombre`, `anio`, `temporada`, `ciudad`) VALUES
-(1, '1992 Summer', 1992, 'Summer', 'Barcelona'),
-(2, '2012 Summer', 2012, 'Summer', 'London'),
-(3, '1920 Summer', 1920, 'Summer', 'Antwerpen');
+CREATE TABLE `Evento` (
+  `id_evento` int(11) NOT NULL,
+  `nombre` varchar(150) NOT NULL,
+  `id_olimpiada` int(11) NOT NULL,
+  `id_deporte` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `Participacion`
 --
+
+
 
 CREATE TABLE `Participacion` (
   `id_deportista` int(11) NOT NULL,

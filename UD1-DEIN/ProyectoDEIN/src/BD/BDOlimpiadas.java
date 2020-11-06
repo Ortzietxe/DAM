@@ -2,8 +2,10 @@ package BD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+import javax.swing.JOptionPane;
+
 import BD.*;
-import Modelo.Olimpiada;
+import UML.Olimpiada;
 
 public class BDOlimpiadas {
 
@@ -17,10 +19,9 @@ public class BDOlimpiadas {
 	        //String plantilla="INSERT INTO olimpiadas.OLIMPIADA ('nombre','anio, 'temporada', 'ciudad') VALUES (?,?,?,?);";
 	       
 			
-			String plantilla = "INSERT INTO `olimpiadas`.`Olimpiada`(`nombre`,`anio`,`temporada`,`ciudad`)VALUES(?,?,?,?);";
-	        
-	        
-	        PreparedStatement ps=con.prepareStatement(plantilla);
+			String plantilla = "INSERT INTO `OLIMPIADAS`.`Olimpiada`(`nombre`,`anio`,`temporada`,`ciudad`)VALUES(?,?,?,?);";
+	                
+	        PreparedStatement ps = con.prepareStatement(plantilla);
 	        
 	        ps.setString(1,oOlimpiada.getNombre());
 	        ps.setInt(2,oOlimpiada.getAnio());
@@ -35,6 +36,7 @@ public class BDOlimpiadas {
 	        catch(Exception e){  
 	        	System.out.println(e.getMessage());
 	        }
+		
 		conexionBasedeDatos.cerrar();
 	}
 }

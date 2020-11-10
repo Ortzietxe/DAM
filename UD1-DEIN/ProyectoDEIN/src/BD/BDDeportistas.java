@@ -50,21 +50,20 @@ public class BDDeportistas {
 	        ResultSet resultado = consulta.executeQuery("SELECT * FROM `OLIMPIADAS`.`Deportista`; ");
 	        while(resultado.next())
 	        {
-	          Deportista oDeportista= new Deportista();
-	          oDeportista.setIdDeportista(resultado.getInt("id_deportista"));
-	          oDeportista.setNombre(resultado.getString("nombre"));
-	          oDeportista.setGenero(resultado.getString("sexo"));
-	          oDeportista.setPeso(resultado.getInt("peso"));
-	          oDeportista.setAltura(resultado.getInt("altura"));
-
-	          deportistas.add(oDeportista);
+		        Deportista oDeportista= new Deportista();
+		        oDeportista.setIdDeportista(resultado.getInt("id_deportista"));
+		        oDeportista.setNombre(resultado.getString("nombre"));
+		        oDeportista.setGenero(resultado.getString("sexo"));
+		        oDeportista.setPeso(resultado.getInt("peso"));
+		        oDeportista.setAltura(resultado.getInt("altura"));
+	
+		        deportistas.add(oDeportista);
 	        }
 	        resultado.close();
 	        consulta.close();
 		conexionBasedeDatos.cerrar();
 		
-		return deportistas;
-	
+		return deportistas;	
 	}
 
 	public static void modificacionDeportistaBD(Deportista oDeportista) {

@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import ComponentesPersonalizados.TextBubbleBorder;
 import ComponentesPersonalizados.botonVolver;
+import ComponentesPersonalizados.comboBoxPersonalizado;
 import Controlador.Controlador;
 
 import java.awt.Color;
@@ -87,9 +88,11 @@ public class vAltaDeportista extends JFrame {
 		lblNewLabel_1_2_1.setBounds(12, 109, 70, 15);
 		contentPane.add(lblNewLabel_1_2_1);
 		
-		JComboBox sexoDeportista = new JComboBox();
-		sexoDeportista.setModel(new DefaultComboBoxModel(new String[] {"Hombre", "Mujer"}));
-		sexoDeportista.setBounds(300, 107, 105, 19);
+		comboBoxPersonalizado sexoDeportista = new comboBoxPersonalizado();
+		sexoDeportista.setSize(105, 19);
+		sexoDeportista.setModel(new DefaultComboBoxModel(new String[] {"Verano", "Invierno"}));
+		sexoDeportista.setLocation(300, 107);
+		sexoDeportista.setFocusable(false);
 		contentPane.add(sexoDeportista);
 		
 		JButton btnNewButton = new JButton("Dar de alta");
@@ -108,6 +111,7 @@ public class vAltaDeportista extends JFrame {
 				Controlador.altaDeportista(nomDeportista.getText(),genero, Integer.parseInt(pesoDeportista.getText()),Integer.parseInt(alturaDeportista.getText()));
 			}
 		});
+		btnNewButton.setBorder(componentbrdr);
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(Color.BLACK);
 		btnNewButton.setBounds(166, 158, 123, 25);

@@ -7,6 +7,25 @@ public class Evento
 	private int idDeporte;
 	private int idOlimpiada;
 	
+	public Evento(int idEvento, String nombre, int idDeporte, int idOlimpiada) {
+		super();
+		this.idEvento = idEvento;
+		this.nombre = nombre;
+		this.idDeporte = idDeporte;
+		this.idOlimpiada = idOlimpiada;
+	}
+	
+	public Evento(String nombre, int idDeporte, int idOlimpiada) {
+		super();
+		this.nombre = nombre;
+		this.idDeporte = idDeporte;
+		this.idOlimpiada = idOlimpiada;
+	}
+
+	public Evento() {
+		super();
+	}
+
 	public int getIdEvento() 
 	{
 		return idEvento;

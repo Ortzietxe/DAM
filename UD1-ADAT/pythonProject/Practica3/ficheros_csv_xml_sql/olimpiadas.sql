@@ -192,6 +192,12 @@ ALTER TABLE `Olimpiada`
   MODIFY `id_olimpiada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `Deportista`
+--
+ALTER TABLE `Deportista`
+  MODIFY `id_deportista` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Restricciones para tablas volcadas
 --
 

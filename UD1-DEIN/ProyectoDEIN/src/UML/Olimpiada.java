@@ -7,6 +7,10 @@ public class Olimpiada {
 	private String temporada;
 	private String ciudad;
 	
+	public Olimpiada() {
+		super();
+	}
+
 	public Olimpiada(String nombre, int anio, String temporada, String ciudad) {
 		this.nombre = nombre;
 		this.anio = anio;

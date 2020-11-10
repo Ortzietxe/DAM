@@ -88,7 +88,13 @@ public class vPrincipal extends clsFormHelp {
 		JMenuItem mntmAltaEventos = new JMenuItem("Alta Eventos");
 		mntmAltaEventos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Controlador.mostrarAltaEvento();
+				try 
+				{
+					Controlador.mostrarAltaEvento();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		mntmAltaEventos.setForeground(Color.WHITE);

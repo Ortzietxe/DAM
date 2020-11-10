@@ -1,67 +1,37 @@
 package BD;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import UML.Deporte;
+import UML.Deportista;
 
 public class BDDeportes {
-
-   /* public static Abogado altaabogado(Abogado a) {
-        try{  
-        String plantilla="INSERT INTO Abogados VALUES (?,?,?,?,?,?);";
-        PreparedStatement ps=con.prepareStatement(plantilla);
-        ps.setString(1,a.getDni());
-        ps.setString(2,a.getNombre());
-        ps.setString(3,a.getApellidos());
-        ps.setString(4,a.getDireccion());
-        
-        int n = ps.executeUpdate();
-        
-        if (n == 0)
-            System.out.println("Cero filas insertadas");
-        }
-        catch(Exception e){   
-      }
-    
-        oc.store(c);
-        return null;
-    }    
-    public static Abogado modificarabogado(Abogado a){
-        try
-    {
-    String plantilla = "UPDATE Abogados SET dni=?,nombre=?,apellidos=?,direccion=?";
-    PreparedStatement ps = con.prepareStatement(plantilla);
-    
-    ps.setString(1,a.getDni());
-    ps.setString(2,a.getNombre());
-    ps.setString(3,a.getApellidos());
-    ps.setString(4,a.getDireccion());
-
-       
-    ps.executeUpdate();
-     
-    ps.close();
-    
-    oc.store(a);  
-       return a;
-
-    }
-        
-	public static void borrarabogado(Abogado a) {
-        try
+	private static Connection con;
+	
+	public static ArrayList<Deporte> buscarDeportes() throws SQLException {
+		ArrayList<Deporte> deportes = new ArrayList();
+		con = conexionBasedeDatos.conectar();
+		
+		Statement consulta = con.createStatement();
+        ResultSet resultado = consulta.executeQuery("SELECT * FROM `OLIMPIADAS`.`Deporte`; ");
+        while(resultado.next())
         {
-        String plantilla = "DELETE FROM Abogados WHERE nombre = ?;";
-        PreparedStatement ps = con.prepareStatement(plantilla);
-        ps.setString(1,c.getNombre());
-        ps.executeUpdate();
-
-        ps.close();
+			Deporte oDeporte= new Deporte();
+			oDeporte.setIdDeporte(resultado.getInt("id_deporte"));
+			oDeporte.setNombre(resultado.getString("nombre"));
+			
+			deportes.add(oDeporte);
         }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null, "Error con el borrado");
-        }       
+        resultado.close();
+        consulta.close();
+	conexionBasedeDatos.cerrar();
+	
+	return deportes;
+	}
 
-        
-        oc=GenericoBD_db4o.getConexion();
-        oc.delete(a);
-    }    */
 }

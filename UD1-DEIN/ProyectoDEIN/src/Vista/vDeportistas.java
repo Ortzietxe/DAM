@@ -79,13 +79,12 @@ public class vDeportistas extends JFrame {
 		AbstractBorder componentbrdr = new TextBubbleBorder(Color.BLACK,0,3,0);		
   
         // Initializing the JTable 
-		
 		tabla = new JTable(tableModel);
 		for(Object c : columnNames)
 			tableModel.addColumn(c);
 		
 		// Pedir datos y rellenar tabla
-		listaDeportistas = Controlador.pedirDatos();
+		listaDeportistas = Controlador.pedirDeportistas();
 		setAllData(listaDeportistas);		
 		
         tabla.getColumnModel().getColumn(0).setPreferredWidth(40);     
@@ -190,6 +189,31 @@ public class vDeportistas extends JFrame {
 		contentPane.add(lblNewLabel_1_2);
 		
 		comboBoxPersonalizado sexoDeportista = new comboBoxPersonalizado();
+		sexoDeportista.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0)
+			{
+				String genero = "";
+				String sexo =  sexoDeportista.getSelectedItem().toString();
+				switch(sexo) {
+				case "Hombre":
+					genero = "M";
+					break;
+				case "Mujer":
+					genero = "F";
+					break;	
+				}
+				
+				JOptionPane.showMessageDialog(null, genero);
+				listaFiltrada = new ArrayList<Deportista>();
+				
+				for(int x = 0; x < listaDeportistas.size(); x++) {
+					if(listaDeportistas.get(x).getGenero() == genero) {
+						listaFiltrada.add(listaDeportistas.get(x));						
+					}
+				}
+				setAllData(listaFiltrada);
+			}
+		});
 		sexoDeportista.setBounds(425, 229, 105, 19);
 		sexoDeportista.setModel(new DefaultComboBoxModel(new String[] {"Hombre", "Mujer"}));
 		contentPane.add(sexoDeportista);
@@ -287,11 +311,7 @@ public class vDeportistas extends JFrame {
 	}
 	
     public void setAllData(ArrayList<Deportista> deportistas)
-    {	
-    	//int cont=0;
-    	
-    	//data = new Object[deportistas.size()][];
-    	
+    {	   	
     	tableModel.getDataVector().removeAllElements();
     	
     	Object[]fila;
@@ -312,10 +332,7 @@ public class vDeportistas extends JFrame {
 			fila= new Object[]{d.getIdDeportista(), d.getNombre(), genero, d.getPeso(), d.getAltura()};
 			tableModel.addRow(fila);
 
-    	}
-    	
-    	
+    	}  	
     	tableModel.fireTableDataChanged();  	
-    
     }
 }

@@ -2,26 +2,28 @@ import mysql.connector
 import csv
 import sqlite3
 
-
+#Funcion que crea la base de datos de olimpidas en sql si se pulsa 1 en el menu, y en sqlite si se pulsa 2 en el menu. Aparte tambien rellena las tablas en base al CSV
 def crearBBDD(bbdd):
     if bbdd == 1:
         con = mysql.connector.connect(user='ortzi', password='1234', host='127.0.0.1', database="OLIMPIADAS")
         sqlFile = open('ficheros_csv_xml_sql/olimpiadas.sql', 'r')
         comodin = "%s"
+        cursor = con.cursor()
+        r = cursor.execute(sqlFile.read(), multi=True)
+        for results in r:
+            if results.with_rows:
+                results.fetchall()
+
     elif bbdd == 2:
         con = sqlite3.connect('ficheros_csv_xml_sql/olimpiadas.sqlite')
-        sqlFile = open('ficheros_csv_xml_sql/olimpiadas.sqlite', 'r')
+        sqlFile = open('ficheros_csv_xml_sql/olimpiadas.sqlite.sql', 'r')
         comodin = "?"
+        cursor = con.cursor()
+        cursor.executescript(sqlFile.read())
 
-    cursor = con.cursor()
-
-    r = cursor.execute(sqlFile.read(), multi=True)
-    for results in r:
-        if results.with_rows:
-            results.fetchall()
     con.commit()
 
-    with open("ficheros_csv_xml_sql/athlete_events-sort.csv", "r") as csvBase:
+    with open("ficheros_csv_xml_sql/athlete_events.csv", "r") as csvBase:
         reader = csv.reader(csvBase)
 
         dicOlimpiadas = {}
@@ -121,8 +123,10 @@ def crearBBDD(bbdd):
     con.commit()
     con.close()
 
+    mostrarMenu()
 
-def ListadoDeportistasDeportes():
+#Funcion que lista los deportistas con todos sus datos y sus participaciones en eventos
+def listadoDeportistasDeportes():
     bbdd= int(input("Selecciona la bbdd que deseas utilizar\n1.-BBDD MySQL\n2.-BBDD SQLite"))
 
     if bbdd == 1:
@@ -139,23 +143,258 @@ def ListadoDeportistasDeportes():
     for deportista in deportistas:
         print(deportista)
 
-def ListadoDeportistasParticipantes():
-    pass
+    cursor.close()
+    con.commit()
+    con.close()
+
+    mostrarMenu()
+
+#funcion que filtra deportistas en base a 5 filtros que pediremos como entrada de datos
+def listadoDeportistasParticipantes():
+    bbdd = int(input("Elige la BBDD que quieres utilizar\n\t1.-BBDD MySQL\n\t2.-BBDD SQLite"))
+    temporada = input("Introduce la temporada en la que participo el deportista 'W/S'\n")
+
+    if temporada.lower() == "w":
+        temp = "Winter"
+
+    if temporada.lower() == "s":
+        temp = "Summer"
+
+    if bbdd == 1:
+        con = mysql.connector.connect(user='ortzi', password='1234', host='127.0.0.1', database="OLIMPIADAS")
+        comodin = "%s"
+    elif bbdd == 2:
+        con = sqlite3.connect('ficheros_csv_xml_sql/olimpiadas.sqlite')
+        comodin = "?"
+
+    cursor = con.cursor()
+
+    cmd = "SELECT id_olimpiada, nombre FROM Olimpiada WHERE temporada = " + comodin + ";"
+
+    cursor.execute(cmd, (temp, ))
+    olimpiadas = cursor.fetchall()
+
+    for olimpiada in olimpiadas:
+        print(olimpiada)
+
+    ediOlim = input("Introduce el numero de id de la olimpiada en la que participo el deportista\n")
+
+    cmd = "SELECT d.id_deporte, d.nombre FROM Deporte d, Evento e WHERE d.id_deporte = e.id_deporte AND e.id_olimpiada = " + comodin + ";"
+
+    cursor.execute(cmd, (ediOlim,))
+    deportes = cursor.fetchall()
+
+    for deporte in deportes:
+        print(deporte)
+
+    idDeporte = input("Introduce el numero de id del deporte en el que participo el deportista\n")
+
+    cmd = "SELECT o.temporada, o.nombre, s.nombre, ev.nombre, d.nombre, d.altura, d.peso, p.edad, e.nombre, p.medalla FROM Equipo e, Deporte s, Olimpiada o, Participacion p, Evento ev, Deportista d WHERE s.id_deporte = ev.id_deporte AND ev.id_evento = p.id_evento AND p.id_deportista = d.id_deportista AND p.id_equipo = e.id_equipo AND ev.id_olimpiada = " + comodin + " AND s.id_deporte = " + comodin + ";"
+
+    cursor.execute(cmd, (ediOlim, idDeporte))
+    participaciones = cursor.fetchall()
+
+    for participacion in participaciones:
+        print(participacion)
+
+    cursor.close()
+    con.commit()
+    con.close()
+
+    mostrarMenu()
+
+def modificarMedallaDeportista():
+    con = mysql.connector.connect(user='ortzi', password='1234', host='127.0.0.1', database="OLIMPIADAS")
+    cursor = con.cursor()
+
+    deportista = input("Introduce el nombre del deportista\n")
+
+    cmd = "SELECT id_deportista, nombre FROM Deportista WHERE nombre LIKE %s;"
+
+    cursor.execute(cmd, ("%"+deportista+"%",))
+    deportistas = cursor.fetchall()
+
+    for deportista in deportistas:
+        print(deportista)
+
+    idDeportista = input("Introduce el numero de id del deportista\n")
+
+    cmd = "SELECT ev.id_evento, ev.nombre FROM Participacion p, Evento ev, Deportista d WHERE  ev.id_evento = p.id_evento AND p.id_deportista = d.id_deportista  AND d.id_deportista = %s;"
+
+    cursor.execute(cmd, (idDeportista,))
+    eventos = cursor.fetchall()
+
+    for evento in eventos:
+        print(evento)
+
+    idEvento = input("Introduce el numero de id del evento del deportista al que quieres cambiar la medalla")
+    medalla = input("Introduce la medalla que ha gano el deportista 'GOLD/SILVER/BRONZE\n")
+
+    cmd = "UPDATE Participacion SET medalla = %s WHERE id_evento = %s AND id_deportista = %s;"
+    cursor.execute(cmd, (medalla, idEvento, idDeportista))
+
+    con = sqlite3.connect('ficheros_csv_xml_sql/olimpiadas.sqlite')
+    cursor = con.cursor()
+    cmd = "UPDATE Participacion SET medalla = ? WHERE id_evento = ? AND id_deportista = ?;"
+    cursor.execute(cmd, (medalla, idEvento, idDeportista))
+
+    cursor.close()
+    con.commit()
+    con.close()
+
+    mostrarMenu()
+
+#funcion para añadir una participacion y deportista
+def anadirDeportistaoParticipacion():
+    con = mysql.connector.connect(user='ortzi', password='1234', host='127.0.0.1', database="OLIMPIADAS")
+    cursor = con.cursor()
+
+    deportista = input("Introduce el nombre del deportista\n")
+
+    cmd = "SELECT id_deportista, nombre FROM Deportista WHERE nombre LIKE %s;"
+
+    cursor.execute(cmd, ("%" + deportista + "%",))
+    deportistas = cursor.fetchall()
+
+    if len(deportistas) == 0:
+        print("El deportista buscado no existe rellena los datos para crearlo")
+
+        nombre = input("Introduce el nombre completo del deportista")
+        sexo = input("Introduce el sexo del deportista")
+        peso = input("Introduce el peso del deportista")
+        altura = input("Introduce la altura del deportista")
+
+        cmd = "INSERT INTO Deportista(nombre, sexo, peso, altura) VALUES(%s, %s, %s, %s, %s);"
+        cursor.execute(cmd, (nombre, sexo, peso, altura))
+    else:
+        for deportista in deportistas:
+            print(deportista)
+
+    idDeportista = input("Introduce el numero de id del deportista\n")
+
+    temporada = input("Introduce la temporada en la que participo el deportista 'W/S'\n")
+
+    if temporada.lower() == "w":
+        temp = "Winter"
+
+    if temporada.lower() == "s":
+        temp = "Summer"
+
+    cmd = "SELECT id_olimpiada, nombre FROM Olimpiada WHERE temporada = %s;"
+
+    cursor.execute(cmd, (temp,))
+    olimpiadas = cursor.fetchall()
+
+    for olimpiada in olimpiadas:
+        print(olimpiada)
+
+    ediOlim = input("Introduce el numero de id de la olimpiada en la que participo el deportista\n")
+
+    cmd = "SELECT d.id_deporte, d.nombre FROM Deporte d, Evento e WHERE d.id_deporte = e.id_deporte AND e.id_olimpiada = %s;"
+
+    cursor.execute(cmd, (ediOlim,))
+    deportes = cursor.fetchall()
+
+    for deporte in deportes:
+        print(deporte)
+
+    idDeporte = input("Introduce el numero de id del deporte en el que participo el deportista\n")
+
+    cmd = "SELECT id_evento, nombre FROM Evento WHERE id_deporte = %s AND id_olimpiada = %s;"
+
+    cursor.execute(cmd, (idDeporte, ediOlim))
+    eventos = cursor.fetchall()
+
+    for evento in eventos:
+        print(evento)
+
+    idEvento = input("Introduce el numero de id del evento en el que participo el deportista\n")
+
+    cmd = "SELECT * FROM Equipo;"
+
+    cursor.execute(cmd)
+    equipos = cursor.fetchall()
+
+    for equipo in equipos:
+        print(equipo)
+
+    idEquipo = input("Introduce el numero de id del equipo en el que participo el deportista\n")
+
+    edad = input("Introduce la edad que twnia el deportista cuando paricipo en el evento\n")
+
+    medalla = input("Introduce la medalla que ha gano el deportista 'GOLD/SILVER/BRONZE\n")
+
+    cmd = "INSERT INTO Participacion(id_deportista, id_evento, id_equipo, edad, medalla) VALUES(%s, %s, %s, %s, %s);"
+    cursor.execute(cmd, (idDeportista, idEvento, idEquipo, edad, medalla))
+
+    con = sqlite3.connect('ficheros_csv_xml_sql/olimpiadas.sqlite')
+    cursor = con.cursor()
+    cmd = "INSERT INTO Participacion(id_deportista, id_evento, id_equipo, edad, medalla) VALUES(?, ?, ?, ?, ?);"
+    cursor.execute(cmd, (idDeportista, idEvento, idEquipo, edad, medalla))
+
+    cursor.close()
+    con.commit()
+    con.close()
+
+#Funcion para eliminar una participacion
+def eliminarParticipacion():
+    con = mysql.connector.connect(user='ortzi', password='1234', host='127.0.0.1', database="OLIMPIADAS")
+    cursor = con.cursor()
+
+    deportista = input("Introduce el nombre del deportista\n")
+
+    cmd = "SELECT id_deportista, nombre FROM Deportista WHERE nombre LIKE %s;"
+
+    cursor.execute(cmd, ("%" + deportista + "%",))
+    deportistas = cursor.fetchall()
+
+    for deportista in deportistas:
+        print(deportista)
+
+    idDeportista = input("Introduce el numero de id del deportista\n")
+
+    cmd = "SELECT id_evento, nombre FROM Evento;"
+
+    cursor.execute(cmd)
+    eventos = cursor.fetchall()
+
+    for evento in eventos:
+        print(evento)
+
+    idEvento = input("Introduce el numero de id del evento en el que participo el deportista\n")
+
+    cmd = "DELETE FROM Participacion WHERE id_evento = %s AND id_deportista = %s;"
+    cursor.execute(cmd, (idEvento, idDeportista))
+
+    con = sqlite3.connect('ficheros_csv_xml_sql/olimpiadas.sqlite')
+    cursor = con.cursor()
+    cmd = "DELETE FROM Participacion WHERE id_evento = ? AND id_deportista = ?;"
+    cursor.execute(cmd, (idEvento, idDeportista))
+
+    cursor.close()
+    con.commit()
+    con.close()
 
 def salir():
     exit(0)
 
 def mostrarMenu():
-    opcion = int(input("Selecciona la accion que deseas realizar\n1.-Crear BBDD MySQL\n2.-Crear BBDD SQLite\n3.-Listado de deportistas en diferentes deportes\n4.-Listado de deportistas participantes\n5.Modificar medalla deportista\n6.-Añadir deportista/participación\n7.-Eliminar participación\n0.-Salir del programa"))
+    opcion = int(input("\nSelecciona la accion que deseas realizar\n\t1.-Crear BBDD MySQL\n\t2.-Crear BBDD SQLite\n\t3.-Listado de deportistas en diferentes deportes\n\t4.-Listado de deportistas participantes\n\t5.Modificar medalla deportista\n\t6.-Añadir deportista/participación\n\t7.-Eliminar participación\n\t0.-Salir del programa"))
 
     if opcion == 1:
         crearBBDD(1)
     if opcion == 2:
         crearBBDD(2)
     if opcion == 3:
-        ListadoDeportistasDeportes()
+        listadoDeportistasDeportes()
     if opcion == 4:
-        ListadoDeportistasParticipantes()
+        listadoDeportistasParticipantes()
+    if opcion == 5:
+        modificarMedallaDeportista()
+    if opcion == 6:
+        anadirDeportistaoParticipacion()
+    if opcion == 7:
+        eliminarParticipacion()
     if opcion == 0:
         salir()
 

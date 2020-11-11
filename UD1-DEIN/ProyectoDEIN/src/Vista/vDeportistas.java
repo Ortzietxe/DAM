@@ -203,7 +203,6 @@ public class vDeportistas extends JFrame {
 					break;	
 				}
 				
-				JOptionPane.showMessageDialog(null, genero);
 				listaFiltrada = new ArrayList<Deportista>();
 				
 				for(int x = 0; x < listaDeportistas.size(); x++) {

@@ -2,7 +2,12 @@ package BD;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
+import UML.Deportista;
 import UML.Evento;
 
 public class BDEventos {
@@ -31,6 +36,29 @@ public class BDEventos {
 	        	System.out.println(e.getMessage());
 	        }
 		conexionBasedeDatos.cerrar();
+	}
+
+	public static ArrayList<Evento> buscarEventos() throws SQLException {
+		ArrayList<Evento> eventos = new ArrayList();
+		con = conexionBasedeDatos.conectar();
+		
+		Statement consulta = con.createStatement();
+        ResultSet resultado = consulta.executeQuery("SELECT * FROM `OLIMPIADAS`.`Evento`; ");
+        while(resultado.next())
+        {
+        	Evento oEvento= new Evento();
+        	oEvento.setIdEvento(resultado.getInt("id_evento"));
+        	oEvento.setNombre(resultado.getString("nombre"));
+        	oEvento.setIdOlimpiada(resultado.getInt("id_olimpiada"));
+        	oEvento.setIdDeporte(resultado.getInt("id_deporte"));
+
+	        eventos.add(oEvento);
+        }
+        resultado.close();
+        consulta.close();
+	conexionBasedeDatos.cerrar();
+	
+	return eventos;	
 	}
 
 }

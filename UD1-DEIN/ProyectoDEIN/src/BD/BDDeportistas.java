@@ -43,24 +43,25 @@ public class BDDeportistas {
 
 	public static ArrayList<Deportista> buscarDeportistas() throws SQLException 
 	{
-			ArrayList<Deportista> deportistas = new ArrayList();
-			con = conexionBasedeDatos.conectar();
-			
-			Statement consulta = con.createStatement();
-	        ResultSet resultado = consulta.executeQuery("SELECT * FROM `OLIMPIADAS`.`Deportista`; ");
-	        while(resultado.next())
-	        {
-		        Deportista oDeportista= new Deportista();
-		        oDeportista.setIdDeportista(resultado.getInt("id_deportista"));
-		        oDeportista.setNombre(resultado.getString("nombre"));
-		        oDeportista.setGenero(resultado.getString("sexo"));
-		        oDeportista.setPeso(resultado.getInt("peso"));
-		        oDeportista.setAltura(resultado.getInt("altura"));
-	
-		        deportistas.add(oDeportista);
-	        }
-	        resultado.close();
-	        consulta.close();
+		ArrayList<Deportista> deportistas = new ArrayList();
+		con = conexionBasedeDatos.conectar();
+		
+		Statement consulta = con.createStatement();
+        ResultSet resultado = consulta.executeQuery("SELECT * FROM `OLIMPIADAS`.`Deportista`; ");
+        while(resultado.next())
+        {
+	        Deportista oDeportista= new Deportista();
+	        oDeportista.setIdDeportista(resultado.getInt("id_deportista"));
+	        oDeportista.setNombre(resultado.getString("nombre"));
+	        oDeportista.setGenero(resultado.getString("sexo"));
+	        oDeportista.setPeso(resultado.getInt("peso"));
+	        oDeportista.setAltura(resultado.getInt("altura"));
+
+	        deportistas.add(oDeportista);
+        }
+        resultado.close();
+        consulta.close();
+        
 		conexionBasedeDatos.cerrar();
 		
 		return deportistas;	

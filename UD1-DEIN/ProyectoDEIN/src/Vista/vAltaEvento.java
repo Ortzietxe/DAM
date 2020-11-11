@@ -54,7 +54,7 @@ public class vAltaEvento extends JFrame {
 	 */
 	public vAltaEvento() throws SQLException {    
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 410);
+		setBounds(100, 100, 450, 360);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		AbstractBorder brdr = new TextBubbleBorder(Color.BLACK,1,8,0);
@@ -117,8 +117,8 @@ public class vAltaEvento extends JFrame {
 		//tamaño de las columnas para la tabla de olimpiadas
 		tablaOlimpiadas.getColumnModel().getColumn(0).setPreferredWidth(10);
 		tablaOlimpiadas.getColumnModel().getColumn(1).setPreferredWidth(20);
-		tablaOlimpiadas.getColumnModel().getColumn(2).setPreferredWidth(30);
-		tablaOlimpiadas.getColumnModel().getColumn(3).setPreferredWidth(160);
+		tablaOlimpiadas.getColumnModel().getColumn(2).setPreferredWidth(40);
+		tablaOlimpiadas.getColumnModel().getColumn(3).setPreferredWidth(150);
 		
 		//metodo de cuando se clicka encima de una olimpiada
 		tablaOlimpiadas.addMouseListener(new java.awt.event.MouseAdapter() 
@@ -147,23 +147,23 @@ public class vAltaEvento extends JFrame {
 		
 		//Añadir scrollbar para las tablas
         JScrollPane spDeportes = new JScrollPane(tablaDeportes);
-        spDeportes.setBounds(25, 259, 400, 75);
+        spDeportes.setBounds(25, 233, 400, 72);
         spDeportes.setBorder(componentbrdr);
         contentPane.add(spDeportes);
         
         JScrollPane spOlimpiadas = new JScrollPane(tablaOlimpiadas);
-        spOlimpiadas.setBounds(25, 125, 400, 75);
+        spOlimpiadas.setBounds(25, 121, 400, 72);
         spOlimpiadas.setBorder(componentbrdr);
         contentPane.add(spOlimpiadas);
 		
 		
 		JLabel lblAltaEvento = new JLabel("Alta Evento");
-		lblAltaEvento.setBounds(152, 12, 160, 41);
+		lblAltaEvento.setBounds(152, 15, 160, 41);
 		lblAltaEvento.setFont(new Font("Dialog", Font.BOLD, 24));
 		contentPane.add(lblAltaEvento);
 		
 		JButton btnNewButton = new JButton("Dar de alta");
-		btnNewButton.setBounds(166, 373, 123, 25);
+		btnNewButton.setBounds(166, 317, 123, 25);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Controlador.altaEvento(nomEvento.getText(), Integer.parseInt(idOlimpiada.getText()), Integer.parseInt(idDeporte.getText()));
@@ -198,30 +198,30 @@ public class vAltaEvento extends JFrame {
 		contentPane.add(volver);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(25, 108, 150, 9);
+		separator.setBounds(25, 104, 150, 9);
 		separator.setForeground(Color.LIGHT_GRAY);
 		contentPane.add(separator);
 		
 		JLabel lblNewLabel = new JLabel("Olimpiada");
-		lblNewLabel.setBounds(190, 99, 77, 15);
+		lblNewLabel.setBounds(190, 95, 77, 15);
 		contentPane.add(lblNewLabel);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(277, 108, 150, 9);
+		separator_1.setBounds(277, 104, 150, 9);
 		separator_1.setForeground(Color.LIGHT_GRAY);
 		contentPane.add(separator_1);
 		
 		JSeparator separator_1_1 = new JSeparator();
-		separator_1_1.setBounds(277, 240, 150, 9);
+		separator_1_1.setBounds(277, 214, 150, 9);
 		separator_1_1.setForeground(Color.LIGHT_GRAY);
 		contentPane.add(separator_1_1);
 		
 		JLabel lblDeporte = new JLabel("Deporte");
-		lblDeporte.setBounds(196, 231, 77, 15);
+		lblDeporte.setBounds(196, 205, 77, 15);
 		contentPane.add(lblDeporte);
 		
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(25, 240, 150, 9);
+		separator_2.setBounds(25, 214, 150, 9);
 		separator_2.setForeground(Color.LIGHT_GRAY);
 		contentPane.add(separator_2);
 		
@@ -229,7 +229,7 @@ public class vAltaEvento extends JFrame {
 		idDeporte.setEnabled(false);
 		idDeporte.setEditable(false);
 		idDeporte.setVisible(false);
-		idDeporte.setBounds(289, 376, 14, 19);
+		idDeporte.setBounds(289, 320, 14, 19);
 		contentPane.add(idDeporte);
 		idDeporte.setColumns(10);
 
@@ -238,7 +238,7 @@ public class vAltaEvento extends JFrame {
 		idOlimpiada.setEnabled(false);
 		idOlimpiada.setEditable(false);
 		idOlimpiada.setVisible(false);
-		idOlimpiada.setBounds(152, 376, 14, 19);
+		idOlimpiada.setBounds(152, 320, 14, 19);
 		contentPane.add(idOlimpiada);
 		idOlimpiada.setColumns(10);
 

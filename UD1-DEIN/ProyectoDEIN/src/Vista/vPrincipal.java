@@ -81,6 +81,17 @@ public class vPrincipal extends clsFormHelp {
 		menuBar.add(mnNewMenu_1);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Consulta");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try 
+				{
+					Controlador.mostrarConsultaEvento();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		mntmNewMenuItem.setForeground(Color.WHITE);
 		mntmNewMenuItem.setBackground(Color.BLACK);
 		mnNewMenu_1.add(mntmNewMenuItem);
@@ -183,7 +194,7 @@ public class vPrincipal extends clsFormHelp {
 		lblNewLabel.setBounds(505, 249, 38, 58);
 		logo.add(lblNewLabel);
 		
-
+		
 	}
 	
 	public void setHelp() 

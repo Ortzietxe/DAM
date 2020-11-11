@@ -16,12 +16,15 @@ public class Controlador
 	private static vAltaDeportista vad;
 	private static vDeportistas vcd;
 	private static vAltaEvento vae;
+	private static vEventos vce;
 	private static Olimpiada oOlimpiada;
 	private static Deportista oDeportista;
 	private static Evento oEvento;
 	private static ArrayList<Deportista> listaDeportistas;
 	private static ArrayList<Deporte> listaDeportes;
 	private static ArrayList<Olimpiada> listaOlimpiadas;
+	private static ArrayList<Evento> listaEventos;
+	private static String olimpiada,deporte;
 	
 	public static void mostrarVentanaPrincipal()
 	{
@@ -33,6 +36,7 @@ public class Controlador
 	{
 
 	}
+	
 	public static void mostrarAltaOlimpiada()
 	{
 		vp.setVisible(false);
@@ -79,7 +83,7 @@ public class Controlador
 		vcd.setVisible(true);		
 	}
 
-	public static ArrayList pedirDeportistas() throws SQLException {
+	public static ArrayList<Deportista> pedirDeportistas() throws SQLException {
 		listaDeportistas = BDDeportistas.buscarDeportistas();		
 		return listaDeportistas;
 	}
@@ -104,4 +108,26 @@ public class Controlador
 		return listaOlimpiadas;
 	}
 	
+	public static ArrayList<Evento> pedirEventos() throws SQLException {
+		listaEventos = BDEventos.buscarEventos();		
+		return listaEventos;
+	}
+
+	public static void mostrarConsultaEvento() throws SQLException {
+		vp.setVisible(false);
+		
+		vce = new vEventos();
+		vce.setVisible(true);
+		
+	}
+
+	public static String buscarOlimpiadaPorId(int idOlimpiada) throws SQLException {
+		olimpiada = BDOlimpiadas.buscarOlimpiadaPorId(idOlimpiada);
+		return olimpiada;
+	}
+
+	public static String buscarDeportesPorId(int idDeporte) throws SQLException {
+		deporte = BDDeportes.buscarDeportesPorId(idDeporte);
+		return deporte;
+	}
 }

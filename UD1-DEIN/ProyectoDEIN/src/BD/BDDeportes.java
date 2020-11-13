@@ -33,21 +33,4 @@ public class BDDeportes {
 	
 	return deportes;
 	}
-
-	public static String buscarDeportesPorId(int idDeporte) throws SQLException {
-		String deporte = "";
-		con = conexionBasedeDatos.conectar();
-		
-		Statement consulta = con.createStatement();
-        ResultSet resultado = consulta.executeQuery("SELECT `nombre` FROM `OLIMPIADAS`.`Deporte` WHERE `id_deporte`= " + idDeporte + "; ");
-        while(resultado.next())
-        {
-			deporte = resultado.getString("nombre");
-        }
-        resultado.close();
-        consulta.close();
-	conexionBasedeDatos.cerrar();
-	
-	return deporte;
-	}
 }

@@ -65,22 +65,5 @@ public class BDOlimpiadas {
 	
 	return olimpiadas;
 	}
-
-	public static String buscarOlimpiadaPorId(int idOlimpiada) throws SQLException {
-		String olimpiada = "";
-		con = conexionBasedeDatos.conectar();
-		
-		Statement consulta = con.createStatement();
-        ResultSet resultado = consulta.executeQuery("SELECT `nombre` FROM `OLIMPIADAS`.`Olimpiada` WHERE `id_olimpiada` = " + idOlimpiada + "; ");
-        while(resultado.next())
-        {
-        	olimpiada = resultado.getString("nombre");
-        }
-        resultado.close();
-        consulta.close();
-	conexionBasedeDatos.cerrar();
-	
-	return olimpiada;
-	}
 }
 

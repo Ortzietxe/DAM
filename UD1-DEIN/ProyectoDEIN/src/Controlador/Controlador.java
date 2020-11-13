@@ -23,7 +23,7 @@ public class Controlador
 	private static ArrayList<Deportista> listaDeportistas;
 	private static ArrayList<Deporte> listaDeportes;
 	private static ArrayList<Olimpiada> listaOlimpiadas;
-	private static ArrayList<Evento> listaEventos;
+	private static ArrayList<EventoDeporteOlimpiada> listaEventos;
 	private static String olimpiada,deporte;
 	
 	public static void mostrarVentanaPrincipal()
@@ -108,7 +108,7 @@ public class Controlador
 		return listaOlimpiadas;
 	}
 	
-	public static ArrayList<Evento> pedirEventos() throws SQLException {
+	public static ArrayList<EventoDeporteOlimpiada> pedirEventos() throws SQLException {
 		listaEventos = BDEventos.buscarEventos();		
 		return listaEventos;
 	}
@@ -121,7 +121,7 @@ public class Controlador
 		
 	}
 
-	public static String buscarOlimpiadaPorId(int idOlimpiada) throws SQLException {
+	/*public static String buscarOlimpiadaPorId(int idOlimpiada) throws SQLException {
 		olimpiada = BDOlimpiadas.buscarOlimpiadaPorId(idOlimpiada);
 		return olimpiada;
 	}
@@ -129,5 +129,5 @@ public class Controlador
 	public static String buscarDeportesPorId(int idDeporte) throws SQLException {
 		deporte = BDDeportes.buscarDeportesPorId(idDeporte);
 		return deporte;
-	}
+	}*/
 }

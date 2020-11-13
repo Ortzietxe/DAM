@@ -7,8 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import UML.Deportista;
-import UML.Evento;
+import UML.*;
 
 public class BDEventos {
 	private static Connection con;
@@ -38,19 +37,21 @@ public class BDEventos {
 		conexionBasedeDatos.cerrar();
 	}
 
-	public static ArrayList<Evento> buscarEventos() throws SQLException {
-		ArrayList<Evento> eventos = new ArrayList();
+	public static ArrayList<EventoDeporteOlimpiada> buscarEventos() throws SQLException {
+		ArrayList<EventoDeporteOlimpiada> eventos = new ArrayList();
 		con = conexionBasedeDatos.conectar();
 		
 		Statement consulta = con.createStatement();
-        ResultSet resultado = consulta.executeQuery("SELECT * FROM `OLIMPIADAS`.`Evento`; ");
+        ResultSet resultado = consulta.executeQuery("SELECT E.id_evento, E.nombre, D.nombre, D.id_deporte, O.nombre, O.id_olimpiada FROM OLIMPIADAS.Evento E, OLIMPIADAS.Deporte D, OLIMPIADAS.Olimpiada O WHERE E.id_olimpiada = O.id_olimpiada AND E.id_deporte = D.id_deporte ;");
         while(resultado.next())
         {
-        	Evento oEvento= new Evento();
-        	oEvento.setIdEvento(resultado.getInt("id_evento"));
-        	oEvento.setNombre(resultado.getString("nombre"));
-        	oEvento.setIdOlimpiada(resultado.getInt("id_olimpiada"));
-        	oEvento.setIdDeporte(resultado.getInt("id_deporte"));
+        	EventoDeporteOlimpiada oEvento= new EventoDeporteOlimpiada();
+        	oEvento.setIdEvento(resultado.getInt("E.id_evento"));
+        	oEvento.setNombreEvento(resultado.getString("E.nombre"));
+        	oEvento.setNombreDeporte(resultado.getString("D.nombre"));
+        	oEvento.setIdDeporte(resultado.getInt("D.id_deporte"));
+          	oEvento.setNombreOlimpiada(resultado.getString("O.nombre"));
+          	oEvento.setIdOlimpiada(resultado.getInt("O.id_olimpiada"));
 
 	        eventos.add(oEvento);
         }

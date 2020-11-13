@@ -17,11 +17,13 @@ public class conexionBasedeDatos {
         try{
         // tipo de base de datos
  		   Class.forName(DRIVER);
- 		   Connection con = DriverManager.getConnection(URL+SCHEMA+PARAMS,USER,PASS);
+ 		   con = DriverManager.getConnection(URL+SCHEMA+PARAMS,USER,PASS);
  		   
            return con;
         }
-        catch( Exception e){
+        catch( Exception e)
+        {
+        	System.out.println("Conexión null: " + e);
         	return null;
         }
     }  

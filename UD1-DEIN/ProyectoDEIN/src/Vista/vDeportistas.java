@@ -59,7 +59,7 @@ public class vDeportistas extends JFrame {
 	
 	 // Column Names 
     Object[] columnNames = { "id","Nombre", "Sexo", "Peso", "Altura" }; 
-
+    Object[] sportColumns = { "id","Nombre"};
 	/**
 	 * Create the frame.
 	 * @throws SQLException 

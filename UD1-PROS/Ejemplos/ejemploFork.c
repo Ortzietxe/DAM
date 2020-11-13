@@ -1,25 +1,21 @@
- //ejemploFork.c
+//ejemploFork.c
 #include <stdlib.h>
+#include <sys/types.h>
 #include <unistd.h>
 #include <stdio.h>
 
-void main()
+int main()
 {
-pid_t pid;
-pid=fork();
-if(pid == -1)
-{
-printf("No se ha podido crear el proceso hijo...");
-exit(-1);
-}
-if(pid == 0) ////Nos encontramos en el proceso hijo
-{
-printf("Soy el proceso hijo \n\t Mi PID es %d, el PID de mi padre es :  %d\n",getpid(),getppid());
-}
-else ////Nos encontramos en el proceso padre
-{
-printf("Soy el proceso padre \n\t Mi PID es %d, El PID de mi padre es: %d\n\t Mi hijo: %d terminó. \n",getpid(),getppid(),pid);
-}
-exit(0);
-}
+    int status;
+    pid_t pid;
 
+    pid = fork();
+    if(pid > 0){
+        printf("Soy el proceso padre /n");
+        sleep(60);
+    }
+    else{
+        exit(0);
+    }
+    return 0;
+}

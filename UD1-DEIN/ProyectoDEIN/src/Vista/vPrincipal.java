@@ -58,7 +58,12 @@ public class vPrincipal extends clsFormHelp {
 		JMenuItem mntmConsulta = new JMenuItem("Consulta");
 		mntmConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "vamonos wey");
+				try {
+					Controlador.mostrarOlimpiadas();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		mntmConsulta.setBackground(Color.BLACK);

@@ -8,8 +8,8 @@ import android.widget.Toast;
 import androidx.fragment.app.FragmentManager;
 
 public class MainActivity extends AppCompatActivity implements Login.OnDialogoConfirmacionListener{
-    EditText campoPassword, campoNombre;
     static String nombre, password;
+    public Login login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,21 +18,17 @@ public class MainActivity extends AppCompatActivity implements Login.OnDialogoCo
 
         FragmentManager fm = getSupportFragmentManager();
 
-        Login login = new Login();
-        //campoNombre = findViewById(R.id.nomUsuario);
-        //nombre = campoNombre.getText().toString();
-
-        campoPassword = findViewById(R.id.password);
-        password = campoPassword.getText().toString();
+        login = new Login();
         login.show(fm, "login");
 
 
     }
     public boolean comprobar()
     {
-        String nombre = Login.getCampoNombre().getText().toString();
+        nombre = login.getCampoNombre().getText().toString();
+        password = login.getCampoPassword().getText().toString();
         if(!nombre.equals("") && !password.equals("")){
-            Toast.makeText(getApplicationContext(),"Bienvenido de vuelta" + nombre ,Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Bienvenido de vuelta " + nombre ,Toast.LENGTH_SHORT).show();
             return true;
         }
         else

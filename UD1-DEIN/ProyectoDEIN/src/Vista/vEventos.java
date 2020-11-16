@@ -39,6 +39,7 @@ import java.awt.Button;
 import javax.swing.JSeparator;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Component;
 
 public class vEventos extends JFrame {
 
@@ -48,6 +49,7 @@ public class vEventos extends JFrame {
 	private static ArrayList<EventoDeporteOlimpiada> listaEventos;
 	private ArrayList<EventoDeporteOlimpiada> listaFiltrada;
 	private ArrayList<Deporte> listaDeportes;
+	private ArrayList<Olimpiada> listaOlimpiadas;
 	private Object[][] data;
 	private JButton btnModificar;
 	private JTable tabla;
@@ -56,14 +58,17 @@ public class vEventos extends JFrame {
 	DefaultTableModel sportsTableModel = new DefaultTableModel();
 	private JTable tablaDeportes;
 	private Object[][] sportsData;
-	
 	DefaultTableModel modSportsTableModel = new DefaultTableModel();
 	private JTable tablaDeportesMod;
 	private Object[][] modSportsData;
+	DefaultTableModel olimpsTableModel = new DefaultTableModel();
+	private JTable tablaOlimpiadas;
+	private Object[][] olimpsData;
 	
 	 // Column Names 
     Object[] columnNames = { "id","Nombre", "Olimpiada", "Deporte" }; 
     Object[] sportColumns = {"Deporte"};
+    Object[] olimpsColumns = {"Nombre"};
     private JTextField modNombre;
 
 	/**
@@ -73,7 +78,7 @@ public class vEventos extends JFrame {
 	@SuppressWarnings("unchecked")
 	public vEventos() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 750, 420);
+		setBounds(100, 100, 750, 400);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		AbstractBorder brdr = new TextBubbleBorder(Color.BLACK,1,8,0);
@@ -90,21 +95,21 @@ public class vEventos extends JFrame {
 		for(Object c : columnNames)
 			tableModel.addColumn(c);
 		
-	    tablaDeportes = new JTable(sportsTableModel);
+	    tablaDeportesMod = new JTable(sportsTableModel);
 		for(Object c : sportColumns)
 			sportsTableModel.addColumn(c);
 		
-	    tablaDeportesMod = new JTable(sportsTableModel);
+	    tablaDeportes = new JTable(sportsTableModel);
 		for(Object c : sportColumns)
 			modSportsTableModel.addColumn(c);
 		
-		// Pedir datos y rellenar tabla
-		listaEventos = Controlador.pedirEventos();
-		setAllData(listaEventos);	
+	    tablaOlimpiadas = new JTable(olimpsTableModel);
+		for(Object c : olimpsColumns)
+			olimpsTableModel.addColumn(c);
 		
 		// Pedir datos y rellenar tabla
-		listaDeportes = Controlador.pedirDeportes();
-		setSportsData(listaDeportes);	
+		listaEventos = Controlador.pedirEventos();
+		setAllData(listaEventos);		
 		
 		tabla.getColumnModel().getColumn(0).setPreferredWidth(20);     
         tabla.getColumnModel().getColumn(1).setPreferredWidth(370);
@@ -138,7 +143,10 @@ public class vEventos extends JFrame {
         tabla.setDefaultEditor(Object.class, null);
         tabla.setBounds(30, 40, 200, 300); 
         
-  
+		// Pedir datos y rellenar tabla
+		listaDeportes = Controlador.pedirDeportes();
+		setSportsData(listaDeportes);
+		
         tablaDeportes.addMouseListener(new java.awt.event.MouseAdapter() 
         {
             @Override
@@ -159,16 +167,54 @@ public class vEventos extends JFrame {
 				}
             }
         });
-		//Añadir scrollbar para las tablas
-        JScrollPane spDeportes = new JScrollPane(tablaDeportes);
-        spDeportes.setBounds(369, 297, 249, 40);
-        spDeportes.setBorder(componentbrdr);
-        contentPane.add(spDeportes);
+        tablaDeportes.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        tablaDeportes.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+        tablaDeportes.setDefaultEditor(Object.class, null);
         
+        tablaDeportesMod.addMouseListener(new java.awt.event.MouseAdapter() 
+        {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) 
+            {
+            	
+            }
+        });
+        tablaDeportesMod.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        tablaDeportesMod.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+        tablaDeportesMod.setDefaultEditor(Object.class, null);
+        
+		// Pedir datos y rellenar tabla
+		listaOlimpiadas = Controlador.pedirOlimpiadas();
+		setOlimpsData(listaOlimpiadas);
+		
+        tablaOlimpiadas.addMouseListener(new java.awt.event.MouseAdapter() 
+        {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) 
+            {
+            	
+            }
+        });
+        tablaOlimpiadas.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        tablaOlimpiadas.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+        tablaOlimpiadas.setDefaultEditor(Object.class, null);
+        
+		//Añadir scrollbar para las tablas
+        JScrollPane spOlimpiadas= new JScrollPane(tablaOlimpiadas);
+        spOlimpiadas.setBounds(518, 297, 220, 40);
+        spOlimpiadas.setBorder(componentbrdr);
+        contentPane.add(spOlimpiadas);
+        
+		//Añadir scrollbar para las tablas
         JScrollPane spDeportesMod = new JScrollPane(tablaDeportesMod);
-        spDeportesMod.setBounds(369, 203, 249, 40);
+        spDeportesMod.setBounds(281, 297, 220, 40);
         spDeportesMod.setBorder(componentbrdr);
         contentPane.add(spDeportesMod);
+        
+        JScrollPane spDeportes = new JScrollPane(tablaDeportes);
+        spDeportes.setBounds(369, 203, 249, 40);
+        spDeportes.setBorder(componentbrdr);
+        contentPane.add(spDeportes);
         
         JScrollPane sp = new JScrollPane(tabla); 
         sp.setBounds(12, 58, 726, 135); 
@@ -195,7 +241,7 @@ public class vEventos extends JFrame {
 			}
 		});
 		borrar.setSize(38, 41);
-		borrar.setLocation(443, 367);
+		borrar.setLocation(443, 349);
 		volver.setSize(48, 48);
 		volver.setToolTipText("volver");
 		volver.setLocation(695, 5);
@@ -217,7 +263,7 @@ public class vEventos extends JFrame {
 		btnModificar.setForeground(Color.WHITE);
 		btnModificar.setEnabled(false);
 		btnModificar.setBackground(Color.GRAY);
-		btnModificar.setBounds(336, 376, 83, 26);
+		btnModificar.setBounds(336, 358, 83, 26);
 		btnModificar.setBorder(componentbrdr);
 		contentPane.add(btnModificar);
 		
@@ -239,7 +285,7 @@ public class vEventos extends JFrame {
 		idDeporte.setEnabled(false);
 		idDeporte.setEditable(false);
 		idDeporte.setVisible(false);
-		idDeporte.setBounds(429, 380, 14, 19);
+		idDeporte.setBounds(429, 362, 14, 19);
 		contentPane.add(idDeporte);
 		idDeporte.setColumns(10);
 		
@@ -247,7 +293,7 @@ public class vEventos extends JFrame {
 		idOlimpiada.setEnabled(false);
 		idOlimpiada.setEditable(false);
 		idOlimpiada.setVisible(false);
-		idOlimpiada.setBounds(310, 380, 14, 19);
+		idOlimpiada.setBounds(310, 362, 14, 19);
 		contentPane.add(idOlimpiada);
 		idOlimpiada.setColumns(10);
 		
@@ -274,7 +320,7 @@ public class vEventos extends JFrame {
 		modNombre = new JTextField();
 		modNombre.setColumns(10);
 		modNombre.setBorder(componentbrdr);
-		modNombre.setBounds(12, 315, 345, 22);
+		modNombre.setBounds(12, 315, 249, 22);
 		contentPane.add(modNombre);
 		
 		JLabel lblNewLabel_1_2_1_1 = new JLabel("Nombre evento");
@@ -282,6 +328,21 @@ public class vEventos extends JFrame {
 		contentPane.add(lblNewLabel_1_2_1_1);
 	}
 	
+	private void setOlimpsData(ArrayList<Olimpiada> olimpiadas) {
+		olimpsTableModel.getDataVector().removeAllElements();
+    	
+    	Object[]fila;
+    	
+    	for(Olimpiada o: olimpiadas)
+    	{
+			fila= new Object[]{ o.getNombre()};
+			olimpsTableModel.addRow(fila);
+
+    	}  	
+    	olimpsTableModel.fireTableDataChanged();  	
+		
+	}
+
 	public void setSportsData(ArrayList<Deporte> deportes)
     {	   	
     	sportsTableModel.getDataVector().removeAllElements();

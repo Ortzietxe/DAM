@@ -15,7 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 public class Login extends DialogFragment {
-    private EditText campoNombre;
+    public EditText campoNombre, campoPassword;
     boolean comprobado;
 
     MainActivity main = new MainActivity();
@@ -29,16 +29,21 @@ public class Login extends DialogFragment {
         View dialogoLogin = inflater.inflate(R.layout.login, null);
         builder.setView(dialogoLogin).setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                comprobado = main.comprobar();
-                if (comprobado)
+                listener.onPossitiveButtonClick();
+                //comprobado = main.comprobar();
+                //if (comprobado)
                     dialog.cancel();
             }
         });
         campoNombre = dialogoLogin.findViewById(R.id.nomUsuario);
+        campoPassword = dialogoLogin.findViewById(R.id.password);
         return builder.create();
     }
     public EditText getCampoNombre(){
         return campoNombre;
+    }
+    public EditText getCampoPassword(){
+        return campoPassword;
     }
 
     public interface OnDialogoConfirmacionListener

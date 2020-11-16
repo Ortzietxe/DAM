@@ -17,6 +17,7 @@ public class Controlador
 	private static vDeportistas vcd;
 	private static vAltaEvento vae;
 	private static vEventos vce;
+	private static vOlimpiadas vco;
 	private static Olimpiada oOlimpiada;
 	private static Deportista oDeportista;
 	private static Evento oEvento;
@@ -121,13 +122,11 @@ public class Controlador
 		
 	}
 
-	/*public static String buscarOlimpiadaPorId(int idOlimpiada) throws SQLException {
-		olimpiada = BDOlimpiadas.buscarOlimpiadaPorId(idOlimpiada);
-		return olimpiada;
+	public static void mostrarOlimpiadas() throws SQLException {
+		vp.setVisible(false);
+		
+		vco = new vOlimpiadas();
+		vco.setVisible(true);
+		
 	}
-
-	public static String buscarDeportesPorId(int idDeporte) throws SQLException {
-		deporte = BDDeportes.buscarDeportesPorId(idDeporte);
-		return deporte;
-	}*/
 }

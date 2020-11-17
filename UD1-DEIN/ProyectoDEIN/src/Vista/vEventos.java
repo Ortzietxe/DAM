@@ -95,13 +95,13 @@ public class vEventos extends JFrame {
 		for(Object c : columnNames)
 			tableModel.addColumn(c);
 		
-	    tablaDeportesMod = new JTable(sportsTableModel);
+	    tablaDeportesMod = new JTable(modSportsTableModel);
 		for(Object c : sportColumns)
-			sportsTableModel.addColumn(c);
+			modSportsTableModel.addColumn(c);
 		
 	    tablaDeportes = new JTable(sportsTableModel);
 		for(Object c : sportColumns)
-			modSportsTableModel.addColumn(c);
+			sportsTableModel.addColumn(c);
 		
 	    tablaOlimpiadas = new JTable(olimpsTableModel);
 		for(Object c : olimpsColumns)
@@ -152,10 +152,10 @@ public class vEventos extends JFrame {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) 
             {
-            	row = tabla.rowAtPoint(evt.getPoint());
+            	row = tablaDeportes.rowAtPoint(evt.getPoint());
             	listaFiltrada = new ArrayList<EventoDeporteOlimpiada>();
 				for(int x = 0; x < listaEventos.size(); x++) {
-					if(listaEventos.get(x).getNombreDeporte().contains(listaEventos.get(tabla.convertRowIndexToModel(row)).toString())) {
+					if(listaEventos.get(x).getNombreDeporte().contains(listaDeportes.get(tablaDeportes.convertRowIndexToModel(row)).toString())) {
 						listaFiltrada.add(listaEventos.get(x));						
 					}
 				}
@@ -205,7 +205,6 @@ public class vEventos extends JFrame {
         spOlimpiadas.setBorder(componentbrdr);
         contentPane.add(spOlimpiadas);
         
-		//Añadir scrollbar para las tablas
         JScrollPane spDeportesMod = new JScrollPane(tablaDeportesMod);
         spDeportesMod.setBounds(281, 297, 220, 40);
         spDeportesMod.setBorder(componentbrdr);

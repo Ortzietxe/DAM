@@ -59,7 +59,7 @@ public class vPrincipal extends clsFormHelp {
 		mntmConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					Controlador.mostrarOlimpiadas();
+					Controlador.mostrarConsultaOlimpiada();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -153,22 +153,62 @@ public class vPrincipal extends clsFormHelp {
 		menuBar.add(mnParticipacin);
 		
 		JMenuItem mntmConsultaParticipacin = new JMenuItem("Consulta");
+		mntmConsultaParticipacin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					Controlador.mostrarParticipaciones();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		mntmConsultaParticipacin.setBackground(Color.BLACK);
 		mntmConsultaParticipacin.setForeground(Color.WHITE);
 		mnParticipacin.add(mntmConsultaParticipacin);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Alta Participacion");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					Controlador.mostrarAltaParticipacion();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		mntmNewMenuItem_3.setForeground(Color.WHITE);
 		mntmNewMenuItem_3.setBackground(Color.BLACK);
 		mnParticipacin.add(mntmNewMenuItem_3);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("  Equipo");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					Controlador.mostrarEquipos();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		mntmNewMenuItem_2.setForeground(new Color(255, 255, 255));
 		mntmNewMenuItem_2.setHorizontalAlignment(SwingConstants.CENTER);
 		mntmNewMenuItem_2.setBackground(new Color(0, 0, 51));
 		menuBar.add(mntmNewMenuItem_2);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Deportes");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					Controlador.mostrarDeportes();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		mntmNewMenuItem_1.setForeground(new Color(255, 255, 255));
 		mntmNewMenuItem_1.setHorizontalAlignment(SwingConstants.LEFT);
 		mntmNewMenuItem_1.setBackground(new Color(0, 0, 51));

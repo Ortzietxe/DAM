@@ -16,6 +16,9 @@ public class Equipo {
 		this.nombre = nombre;
 		this.iniciales = iniciales;
 	}
+	public Equipo() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getIdEquipo() {
 		return idEquipo;
 	}

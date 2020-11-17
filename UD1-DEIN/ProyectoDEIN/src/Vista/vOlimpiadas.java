@@ -155,9 +155,9 @@ public class vOlimpiadas extends JFrame {
 		volver.setLocation(510, 5);
 		contentPane.add(borrar);
 		
-		JLabel lblConsultaOlimpiada = new JLabel("Consulta deportistas");
+		JLabel lblConsultaOlimpiada = new JLabel("Consulta olimpiadas");
 		lblConsultaOlimpiada.setFont(new Font("Dialog", Font.BOLD, 24));
-		lblConsultaOlimpiada.setBounds(140, 5, 285, 41);
+		lblConsultaOlimpiada.setBounds(152, 5, 285, 41);
 		contentPane.add(lblConsultaOlimpiada);
 		
 		btnModificar = new JButton("Modificar");
@@ -208,6 +208,7 @@ public class vOlimpiadas extends JFrame {
 		contentPane.add(lblolimpiada);
 		
 		comboBoxPersonalizado temporada = new comboBoxPersonalizado();
+		temporada.setModel(new DefaultComboBoxModel(new String[] {"Verano", "Invierno"}));
 		temporada.setBounds(403, 229, 105, 22);
 		contentPane.add(temporada);
 		
@@ -230,6 +231,7 @@ public class vOlimpiadas extends JFrame {
 		contentPane.add(lblNewLabel_1_2_2_1);
 		
 		comboBoxPersonalizado temporada_1 = new comboBoxPersonalizado();
+		temporada_1.setModel(new DefaultComboBoxModel(new String[] {"Verano", "Invierno"}));
 		temporada_1.setBounds(453, 285, 105, 22);
 		contentPane.add(temporada_1);
 		

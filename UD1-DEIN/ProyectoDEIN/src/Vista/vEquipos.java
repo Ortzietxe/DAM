@@ -217,6 +217,7 @@ public class vEquipos extends JFrame {
 		iniciales = new JTextField();
 		iniciales.setColumns(10);
 		iniciales.setBounds(271, 297, 111, 19);
+		iniciales.setBorder(componentbrdr);
 		contentPane.add(iniciales);
 		
 	}

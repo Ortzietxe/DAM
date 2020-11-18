@@ -27,6 +27,7 @@ public class Controlador
 	private static Evento oEvento;
 	private static Deporte oDeporte;
 	private static Equipo oEquipo;
+	private static Participacion oParticipacion;
 	private static ArrayList<Deportista> listaDeportistas;
 	private static ArrayList<Deporte> listaDeportes;
 	private static ArrayList<Olimpiada> listaOlimpiadas;
@@ -99,8 +100,7 @@ public class Controlador
 	}
 
 	public static void borrarDeportista(int idDeportista) {
-		BDDeportistas.borrarDeportista(idDeportista);
-		
+		BDDeportistas.borrarDeportista(idDeportista);	
 	}
 
 	public static ArrayList<Deporte> pedirDeportes() throws SQLException {
@@ -174,6 +174,13 @@ public class Controlador
 	public static ArrayList<ParticipacionDeportistaEventoEquipo> pedirParticipaciones() throws SQLException {
 		listaParticipaciones = BDParticipaciones.buscarParticipaciones();		
 		return listaParticipaciones;
+	}
+
+
+	public static void altaParticipacion(int idDeportista, int idEvento, int idEquipo, int edad, String medalla) {
+		oParticipacion = new Participacion(idDeportista, idEvento, idEquipo, edad, medalla);
+		BDParticipaciones.altaParticipacionBD(oParticipacion);	
+		
 	}
 
 }

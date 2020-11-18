@@ -73,6 +73,7 @@ public class vParticipaciones extends JFrame {
     Object[] teamsColumns = {"Nombre equipo"};
     Object[] eventsColumns = {"Nombre evento"};
     Object[] athleteColumns = {"Nombre deportista"};
+    private JTextField edad;
 
 	/**
 	 * Create the frame.
@@ -81,7 +82,7 @@ public class vParticipaciones extends JFrame {
 	@SuppressWarnings("unchecked")
 	public vParticipaciones() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 750, 400);
+		setBounds(100, 100, 825, 400);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		AbstractBorder brdr = new TextBubbleBorder(Color.BLACK,1,8,0);
@@ -118,9 +119,11 @@ public class vParticipaciones extends JFrame {
 		listaParticipaciones = Controlador.pedirParticipaciones();
 		setAllData(listaParticipaciones);		
 		
-		tabla.getColumnModel().getColumn(0).setPreferredWidth(20);     
-        tabla.getColumnModel().getColumn(1).setPreferredWidth(370);
-        tabla.getColumnModel().getColumn(3).setPreferredWidth(170);
+		tabla.getColumnModel().getColumn(0).setPreferredWidth(300);     
+        tabla.getColumnModel().getColumn(1).setPreferredWidth(300);
+        tabla.getColumnModel().getColumn(2).setPreferredWidth(90);
+        tabla.getColumnModel().getColumn(3).setPreferredWidth(20);
+        tabla.getColumnModel().getColumn(4).setPreferredWidth(50);
         
         tabla.addMouseListener(new java.awt.event.MouseAdapter() 
         {
@@ -160,18 +163,9 @@ public class vParticipaciones extends JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) 
             {
             	row = tablaEventos.rowAtPoint(evt.getPoint());
-            	listaFiltrada = new ArrayList<ParticipacionDeportistaEventoEquipo>();
-				for(int x = 0; x < listaEventos.size(); x++) {
-					if(listaParticipaciones.get(x).getNomEvento().contains(listaEventos.get(tablaEventos.convertRowIndexToModel(row)).toString())) {
-						listaFiltrada.add(listaParticipaciones.get(x));						
-					}
-				}
-				try {
-					setAllData(listaFiltrada);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+            	String evento = listaEventos.get(tablaEventos.convertRowIndexToModel(row)).getNombreEvento();
+            	JOptionPane.showMessageDialog(null, evento);	
+            	
             }
         });
         tablaEventos.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -197,22 +191,17 @@ public class vParticipaciones extends JFrame {
         
 		//Añadir scrollbar para las tablas
         JScrollPane spEventos= new JScrollPane(tablaEventos);
-        spEventos.setBounds(518, 297, 220, 40);
+        spEventos.setBounds(336, 298, 220, 40);
         spEventos.setBorder(componentbrdr);
         contentPane.add(spEventos);
         
         JScrollPane spEquipos= new JScrollPane(tablaEquipos);
-        spEquipos.setBounds(518, 297, 220, 40);
+        spEquipos.setBounds(42, 298, 220, 40);
         spEquipos.setBorder(componentbrdr);
         contentPane.add(spEquipos);
         
-        JScrollPane spDeportistasMod = new JScrollPane(tablaDeportistasMod);
-        spDeportistasMod.setBounds(282, 297, 220, 40);
-        spDeportistasMod.setBorder(componentbrdr);
-        contentPane.add(spDeportistasMod);
-        
         JScrollPane sp = new JScrollPane(tabla); 
-        sp.setBounds(12, 58, 726, 135); 
+        sp.setBounds(12, 58, 801, 135); 
 		sp.setBorder(componentbrdr);
         contentPane.add(sp);
 		
@@ -239,12 +228,12 @@ public class vParticipaciones extends JFrame {
 		borrar.setLocation(443, 349);
 		volver.setSize(48, 48);
 		volver.setToolTipText("volver");
-		volver.setLocation(695, 5);
+		volver.setLocation(770, 5);
 		contentPane.add(borrar);
 		
-		JLabel lblConsultaOlimpiada = new JLabel("Consulta eventos");
+		JLabel lblConsultaOlimpiada = new JLabel("Consulta participaciones");
 		lblConsultaOlimpiada.setFont(new Font("Dialog", Font.BOLD, 24));
-		lblConsultaOlimpiada.setBounds(267, 5, 285, 41);
+		lblConsultaOlimpiada.setBounds(223, 5, 345, 41);
 		contentPane.add(lblConsultaOlimpiada);
 		
 		btnModificar = new JButton("Modificar");
@@ -264,41 +253,56 @@ public class vParticipaciones extends JFrame {
 		
 		JSeparator separator = new JSeparator();
 		separator.setForeground(Color.LIGHT_GRAY);
-		separator.setBounds(84, 274, 220, 9);
+		separator.setBounds(134, 277, 220, 9);
 		contentPane.add(separator);
 		
 		JLabel lblNewLabel = new JLabel("Modificar");
-		lblNewLabel.setBounds(343, 266, 70, 15);
+		lblNewLabel.setBounds(393, 269, 70, 15);
 		contentPane.add(lblNewLabel);
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setForeground(Color.LIGHT_GRAY);
-		separator_1.setBounds(443, 274, 220, 9);
+		separator_1.setBounds(493, 277, 220, 9);
 		contentPane.add(separator_1);
 		
 		JLabel lblNewLabel_1_2_1 = new JLabel("Nombre deportista");
-		lblNewLabel_1_2_1.setBounds(12, 225, 149, 15);
+		lblNewLabel_1_2_1.setBounds(32, 225, 149, 15);
 		contentPane.add(lblNewLabel_1_2_1);
 		
 		
 		JLabel lblNewLabel_1_2_2 = new JLabel("Medalla");
-		lblNewLabel_1_2_2.setBounds(533, 225, 83, 15);
+		lblNewLabel_1_2_2.setBounds(607, 225, 83, 15);
 		contentPane.add(lblNewLabel_1_2_2);
 		
 		comboBoxPersonalizado medalla = new comboBoxPersonalizado();
-		medalla.setBounds(633, 221, 105, 22);
+		medalla.setBounds(672, 221, 105, 22);
 		medalla.setModel(new DefaultComboBoxModel(new String[] {"Gold", "Silver", "Bronze", "NA"}));
 		contentPane.add(medalla);
 		
 		JTextField nombre = new JTextField();
 		nombre.setColumns(10);
 		nombre.setBorder(componentbrdr);
-		nombre.setBounds(170, 222, 345, 22);
+		nombre.setBounds(170, 222, 419, 22);
 		contentPane.add(nombre);
 		
-		JLabel lblNewLabel_1_2_1_1 = new JLabel("Nombre evento");
-		lblNewLabel_1_2_1_1.setBounds(12, 310, 129, 15);
+		JLabel lblNewLabel_1_2_1_1 = new JLabel("Edad");
+		lblNewLabel_1_2_1_1.setBounds(606, 298, 48, 15);
 		contentPane.add(lblNewLabel_1_2_1_1);
+		
+		edad = new JTextField();
+		edad.setColumns(10);
+		edad.setBorder(componentbrdr);
+		edad.setBounds(672, 295, 105, 22);
+		contentPane.add(edad);
+		
+		JLabel lblNewLabel_1_2_2_1 = new JLabel("Medalla");
+		lblNewLabel_1_2_2_1.setBounds(606, 323, 83, 15);
+		contentPane.add(lblNewLabel_1_2_2_1);
+		
+		comboBoxPersonalizado medalla_1 = new comboBoxPersonalizado();
+		medalla_1.setBounds(672, 319, 105, 22);
+		medalla_1.setModel(new DefaultComboBoxModel(new String[] {"Gold", "Silver", "Bronze", "NA"}));
+		contentPane.add(medalla_1);
 	}
 	
 	private void setTeamsData(ArrayList<Equipo> equipos) {

@@ -90,7 +90,7 @@ public class vAltaDeportista extends JFrame {
 		
 		comboBoxPersonalizado sexoDeportista = new comboBoxPersonalizado();
 		sexoDeportista.setSize(105, 19);
-		sexoDeportista.setModel(new DefaultComboBoxModel(new String[] {"Verano", "Invierno"}));
+		sexoDeportista.setModel(new DefaultComboBoxModel(new String[] {"Hombre", "Mujer"}));
 		sexoDeportista.setLocation(300, 107);
 		sexoDeportista.setFocusable(false);
 		contentPane.add(sexoDeportista);

@@ -55,6 +55,7 @@ public class vDeportistas extends JFrame {
 	private JButton btnModificar;
 	private JTable tabla;
 	DefaultTableModel tableModel = new DefaultTableModel();
+	public botonBorrar borrar;
 	
 	
 	 // Column Names 
@@ -115,6 +116,8 @@ public class vDeportistas extends JFrame {
                 nombre.setText(odeportista.getNombre());
                 peso.setText(String.valueOf(odeportista.getPeso()));
                 altura.setText(String.valueOf(odeportista.getAltura()));
+                
+                borrar.setEnabled(true);
             }
         });
         
@@ -143,7 +146,7 @@ public class vDeportistas extends JFrame {
 		volver.setLocation(510, 5);
 		contentPane.add(volver);
 		
-		botonBorrar borrar = new botonBorrar();
+		borrar = new botonBorrar();
 		borrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Controlador.borrarDeportista(Integer.parseInt(idDeportista.getText()));
@@ -151,9 +154,8 @@ public class vDeportistas extends JFrame {
 		});
 		borrar.setSize(38, 41);
 		borrar.setLocation(520, 311);
-		volver.setSize(48, 48);
-		volver.setToolTipText("volver");
-		volver.setLocation(510, 5);
+		borrar.setEnabled(false);
+		borrar.setToolTipText("borrar");
 		contentPane.add(borrar);
 		
 		JLabel lblConsultaOlimpiada = new JLabel("Consulta deportistas");

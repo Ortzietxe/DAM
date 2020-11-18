@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"BD","c":"BDParticipaciones","l":"altaParticipacionBD(Participacion)","url":"altaParticipacionBD(UML.Participacion)"},{"p":"BD","c":"BDParticipaciones","l":"BDParticipaciones()","url":"%3Cinit%3E()"},{"p":"BD","c":"BDParticipaciones","l":"buscarParticipaciones()"}]

@@ -23,7 +23,7 @@ public class comboBoxPersonalizado extends JComboBox<Object>{
 		this.setFocusable(false);
 		JTextField boxField = (JTextField) this.getEditor().getEditorComponent();
 		boxField.setBorder(BorderFactory.createEmptyBorder());
-		boxField.setBackground(new Color(0, 0, 0, 0));
+		boxField.setBackground(Color.WHITE);
 		boxField.setFocusable(false);
         this.setVisible(true);
     }

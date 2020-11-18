@@ -1,16 +1,44 @@
 package BD;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import UML.Olimpiada;
+import UML.Participacion;
 import UML.ParticipacionDeportistaEventoEquipo;
 
 public class BDParticipaciones {
 	private static Connection con;
+	
+	public static void altaParticipacionBD(Participacion oparticipacion)
+	{
+		try{  
+			con = conexionBasedeDatos.conectar();     
+			
+			String plantilla = "INSERT INTO `OLIMPIADAS`.`Participacion`(`id_deportista`,`id_evento`,`id_equipo`,`edad`,`medalla`)VALUES(?,?,?,?,?);";
+	                
+	        PreparedStatement ps = con.prepareStatement(plantilla);
+	        
+	        ps.setInt(1,oparticipacion.getIdDeportista());
+	        ps.setInt(2,oparticipacion.getIdEvento());
+	        ps.setInt(3,oparticipacion.getIdEquipo());
+	        ps.setInt(4,oparticipacion.getEdad());
+	        ps.setString(5,oparticipacion.getMedalla());
+	        
+	        int n = ps.executeUpdate();
+	        
+	        if (n == 0) 
+	            System.out.println("Cero filas insertadas");	        
+	        }
+	        catch(Exception e){  
+	        	System.out.println(e.getMessage());
+	        }
+		
+		conexionBasedeDatos.cerrar();
+	}
 	
 	public static ArrayList<ParticipacionDeportistaEventoEquipo> buscarParticipaciones() throws SQLException {
 		ArrayList<ParticipacionDeportistaEventoEquipo> participaciones = new ArrayList();

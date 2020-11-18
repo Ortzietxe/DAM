@@ -98,7 +98,7 @@ public class BDDeportistas {
 		try{  
 			con = conexionBasedeDatos.conectar();
 
-			String plantilla = "DELETE * FROM `OLIMPIADAS`.`Deportista` WHERE `id_deportista` = " + idDeportista+ ";";
+			String plantilla = "DELETE FROM `OLIMPIADAS`.`Deportista` WHERE `id_deportista` = " + idDeportista+ ";";
 	        	        
 	        PreparedStatement ps=con.prepareStatement(plantilla);
 	        	        

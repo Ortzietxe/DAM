@@ -148,7 +148,7 @@ public class vPrincipal extends clsFormHelp {
 		mntmAltaDeportista.setBackground(Color.BLACK);
 		mnNewMenu_2.add(mntmAltaDeportista);
 		
-		JMenu mnParticipacin = new JMenu("Participaciónes");
+		JMenu mnParticipacin = new JMenu("ParticipaciÃ³nes");
 		mnParticipacin.setForeground(new Color(255, 255, 255));
 		menuBar.add(mnParticipacin);
 		
@@ -242,6 +242,10 @@ public class vPrincipal extends clsFormHelp {
 		
 	}
 	
+	/**
+	 * *Sirve para la ayuda javaHelp
+	 * @author Julen
+	 */
 	public void setHelp() 
 	{}
 }

@@ -76,7 +76,7 @@ public class vParticipaciones extends JFrame {
     private JTextField edad;
 
 	/**
-	 * Create the frame.
+	 * Crea el frame con todos sus componentes
 	 * @throws SQLException 
 	 */
 	@SuppressWarnings("unchecked")
@@ -189,7 +189,7 @@ public class vParticipaciones extends JFrame {
         tablaEquipos.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
         tablaEquipos.setDefaultEditor(Object.class, null);
         
-		//Añadir scrollbar para las tablas
+		//AÃ±adir scrollbar para las tablas
         JScrollPane spEventos= new JScrollPane(tablaEventos);
         spEventos.setBounds(336, 298, 220, 40);
         spEventos.setBorder(componentbrdr);
@@ -305,7 +305,15 @@ public class vParticipaciones extends JFrame {
 		contentPane.add(medalla_1);
 	}
 	
-	private void setTeamsData(ArrayList<Equipo> equipos) {
+
+	/**
+	 * Rellena la tabla equipos desde BD
+	 * @author Julen
+	 * @param equipos
+	 * @throws SQLException
+	 */
+	private void setTeamsData(ArrayList<Equipo> equipos) throws SQLException
+	{
 		
 		teamsTableModel.getDataVector().removeAllElements();
     	
@@ -320,7 +328,12 @@ public class vParticipaciones extends JFrame {
     	teamsTableModel.fireTableDataChanged();  	
 		
 	}
-
+	/**
+	 * Rellena la tabla eventos desde BD
+	 * @author Julen
+	 * @param eventos
+	 * @throws SQLException
+	 */
 	public void setEventsData(ArrayList<EventoDeporteOlimpiada> eventos) throws SQLException
     {	   	
 		eventsTableModel.getDataVector().removeAllElements();
@@ -336,6 +349,12 @@ public class vParticipaciones extends JFrame {
     	eventsTableModel.fireTableDataChanged();  	
     }
 	
+	/**
+	 * Rellena la tabla participaciones desde BD
+	 * @author Julen
+	 * @param eventos
+	 * @throws SQLException
+	 */
     public void setAllData(ArrayList<ParticipacionDeportistaEventoEquipo> participaciones) throws SQLException
     {	   	
     	tableModel.getDataVector().removeAllElements();
